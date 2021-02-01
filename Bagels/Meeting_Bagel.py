@@ -1,19 +1,7 @@
-import random
 import pygame
-import sys
+from Bagels.Game_Common import Common
 from pygame.locals import (
-    QUIT,
     Rect,
-    KEYDOWN,
-    KEYUP,
-    K_a,
-    K_d,
-    K_q,
-    K_w,
-    K_s,
-    K_e,
-    K_r,
-    K_f,
     K_SPACE
 )
 
@@ -22,9 +10,9 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
-
-# 게임 별로 클래스 만들어서 update 함수 다르게 하기
-class Meeting_Bagel(pygame.sprite.Sprite):
+# 왼쪽 아래
+# 대표님이 고개를 돌릴 때 스페이스바를 눌러 맥주를 마시세요
+class Meeting_Bagel(Common):
     def __init__(self):
         super(Meeting_Bagel, self).__init__()
         self.surf = pygame.Surface((25, 50))

@@ -1,20 +1,10 @@
-import random
 import pygame
-import sys
+from Bagels.Game_Common import Common
 from pygame.locals import (
-    QUIT,
     Rect,
-    KEYDOWN,
-    KEYUP,
     K_a,
     K_d,
     K_q,
-    K_w,
-    K_s,
-    K_e,
-    K_r,
-    K_f,
-    K_SPACE
 )
 
 # default color
@@ -22,14 +12,14 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
-
-# 게임 별로 클래스 만들어서 update 함수 다르게 하기
-class Table_Bagel(pygame.sprite.Sprite):
+# 왼쪽
+# 테이블 빈 자리를 찾아가서 앉아주세요. (a, d, q)
+class Table_Bagel(Common):
     def __init__(self):
         super(Table_Bagel, self).__init__()
         self.surf = pygame.Surface((25, 50))
         self.surf.fill(BLACK)
-        self.rect = self.surf.get_rect()
+        self.rect = Rect(0, 0, 25, 50)
 
         self.a_keydown_flag = False
         self.d_keydown_flag = False
@@ -44,6 +34,7 @@ class Table_Bagel(pygame.sprite.Sprite):
         elif event_key == K_q:
             self.q_keydown_flag = True
 
+    # TODO 이미지 결과에 따라 움직임 제한할 것
     def keyup_detector(self, event_key):
         if event_key == K_a and self.a_keydown_flag:
             self.rect.move_ip(-100, 0)
