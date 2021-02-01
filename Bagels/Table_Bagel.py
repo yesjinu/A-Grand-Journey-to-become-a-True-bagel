@@ -1,7 +1,6 @@
 import random
 import pygame
 import sys
-import Bagel
 from pygame.locals import (
     QUIT,
     Rect,
