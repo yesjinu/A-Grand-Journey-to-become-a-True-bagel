@@ -57,17 +57,40 @@ class Bagel(pygame.sprite.Sprite):
         self.surf.fill(BLACK)
         self.rect = self.surf.get_rect()
 
-    # # Move the sprite based on user keypresses
-    # def update(self, pressed_keys):
-    #     if pressed_keys[K_w]:
-    #         self.rect.move_ip(0, -5)
-    #     if pressed_keys[K_s]:
-    #         self.rect.move_ip(0, 5)
-    #     if pressed_keys[K_a]:
-    #         self.rect.move_ip(-5, 0)
-    #     if pressed_keys[K_d]:
-    #         self.rect.move_ip(5, 0)
+        self.space_keydown_flag = False
+        self.a_keydown_flag = False
+        self.d_keydown_flag = False
+        self.s_keydown_flag = False
+        self.w_keydown_flag = False
 
+    # Move the sprite based on user keypresses
+    def keydown_flagger(self, event_key):
+        if event_key == K_w:
+            self.w_keydown_flag = True
+        elif event_key == K_s:
+            self.s_keydown_flag = True
+        elif event_key == K_a:
+            self.a_keydown_flag = True
+        elif event_key == K_d:
+            self.d_keydown_flag = True
+
+    def keyup_detector(self, event_key):
+        print(event_key == K_a)
+        print(event_key == K_d)
+        print(event_key == K_s)
+        print(event_key == K_w)
+        if event_key == K_a and self.a_keydown_flag:
+            self.rect.move_ip(-10, 0)
+            self.a_keydown_flag = False
+        elif event_key == K_d and self.d_keydown_flag:
+            self.rect.move_ip(10, 0)
+            self.d_keydown_flag = False
+        elif event_key == K_w and self.w_keydown_flag:
+            self.rect.move_ip(0, -10)
+            self.w_keydown_flag = False
+        elif event_key == K_s and self.s_keydown_flag:
+            self.rect.move_ip(0, 10)
+            self.s_keydown_flag = False
 
 def main():
     # 메시지 렌더링 초기화
@@ -76,10 +99,8 @@ def main():
 
     game_started = False
     space_keydown_flag = False
-    a_keydown_flag = False
-    d_keydown_flag = False
-    s_keydown_flag = False
-    w_keydown_flag = False
+    allowed_key_input = [K_SPACE, K_a, K_d, K_s, K_w]
+
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
     bagel = Bagel()
 
@@ -95,32 +116,26 @@ def main():
             # 이때 동작하게 만들
             elif event.type == KEYDOWN:
                 if event.key == K_SPACE:
-                    space_keydown_flag = True
-                elif event.key == K_a:
-                    a_keydown_flag = True
-                elif event.key == K_d:
-                    d_keydown_flag = True
-                elif event.key == K_w:
-                    w_keydown_flag = True
-                elif event.key == K_s:
-                    s_keydown_flag = True
+                    game_started = True
+                elif event.key in allowed_key_input:
+                    bagel.keydown_flagger(event.key)
 
             elif event.type == KEYUP:
-                if event.key == K_SPACE and space_keydown_flag:
-                    game_started = True
-                    space_keydown_flag = False
-                elif event.key == K_a and a_keydown_flag:
-                    bagel.rect.move_ip(-100, 0)
-                    a_keydown_flag = False
-                elif event.key == K_d and d_keydown_flag:
-                    bagel.rect.move_ip(100, 0)
-                    d_keydown_flag = False
-                elif event.key == K_w and w_keydown_flag:
-                    bagel.rect.move_ip(0, -100)
-                    w_keydown_flag = False
-                elif event.key == K_s and s_keydown_flag:
-                    bagel.rect.move_ip(0, 100)
-                    s_keydown_flag = False
+                if event.key in allowed_key_input:
+                    bagel.keyup_detector(event.key)
+                # elif event.key == K_a and a_keydown_flag:
+                #     bagel.rect.move_ip(-100, 0)
+                #     a_keydown_flag = False
+                # elif event.key == K_d and d_keydown_flag:
+                #     bagel.rect.move_ip(100, 0)
+                #     d_keydown_flag = False
+                # elif event.key == K_w and w_keydown_flag:
+                #     bagel.rect.move_ip(0, -100)d
+                #     w_keydown_flag = False
+                # elif event.key == K_s and s_keydown_flag:
+                #     bagel.rect.move_ip(0, 100)
+                #     s_keydown_flag = False
+                    print(event.key)
 
 
         if not game_started:
@@ -128,8 +143,11 @@ def main():
             # SURFACE.blit(start_message, get_center_of_message(start_message))
 
         # if game_started:
-            # pressed_keys = pygame.key.get_pressed()
-            # bagel.update(pressed_keys)
+        #     pressed_keys = pygame.key.get_pressed()
+        #     released_keys = pygame.key.get_released()
+        #     bagel.update(pressed_keys)
+        #     bagel.update(released_keys)
+
         SURFACE.blit(bagel.surf, bagel.rect)
 
 
