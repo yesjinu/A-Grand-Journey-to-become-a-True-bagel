@@ -1,10 +1,10 @@
 import pygame
 import sys
-from Bagels.Table_Bagel import Table_Bagel
-from Bagels.Calendar_Bagel import Calendar_Bagel
-from Bagels.Meeting_Bagel import Meeting_Bagel
-from Bagels.Slack_Bagel import Slack_Bagel
-from Bagels.Click_Bagel import Click_Bagel
+from Games.Table_sitting import Table_sitting
+from Games.Calendar import Calendar
+from Games.Meeting_beer import Meeting_beer
+from Games.Slack_pepe import Slack_pepe
+from Games.Click_rhythm import Click_game
 from pygame.locals import (
     QUIT,
     Rect,
@@ -63,11 +63,11 @@ def main():
     on_game = False
 
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
-    table_bagel = Table_Bagel()
-    cal_bagel = Calendar_Bagel()
-    meeting_bagel = Meeting_Bagel()
-    slack_bagel = Slack_Bagel()
-    click_bagel = Click_Bagel()
+    table_game = Table_sitting()
+    calendar_game = Calendar()
+    meeting_game = Meeting_beer()
+    slack_game = Slack_pepe()
+    click_game = Click_game()
 
     while True:
         SURFACE.fill(WHITE)
@@ -81,31 +81,34 @@ def main():
                 if event.key == K_p:
                     on_game = True
                 elif event.key in allowed_key_input:
-                    table_bagel.keydown_flagger(event.key)
-                    cal_bagel.keydown_flagger(event.key)
-                    meeting_bagel.keydown_flagger(event.key)
-                    slack_bagel.keydown_flagger(event.key)
+                    table_game.keydown_flagger(event.key)
+                    calendar_game.keydown_flagger(event.key)
+                    meeting_game.keydown_flagger(event.key)
+                    slack_game.keydown_flagger(event.key)
             elif event.type == KEYUP:
                 if event.key in allowed_key_input:
-                    table_bagel.keyup_detector(event.key)
-                    cal_bagel.keyup_detector(event.key)
-                    meeting_bagel.keyup_detector(event.key)
-                    slack_bagel.keyup_detector(event.key)
+                    table_game.keyup_detector(event.key)
+                    calendar_game.keyup_detector(event.key)
+                    meeting_game.keyup_detector(event.key)
+                    slack_game.keyup_detector(event.key)
+
             elif event.type == MOUSEBUTTONDOWN:
-                click_bagel.click_down_flagger()
+                print("mouse button down detected")
+                click_game.click_down_flagger()
             elif event.type == MOUSEBUTTONUP:
-                click_bagel.click_up_detector()
+                print("mouse button up detected")
+                click_game.click_up_detector()
 
         if not on_game: # 시작 페이지
             show_message_on_screen_center(main_title_message)
 
         if on_game:
             draw_grid_line()
-            show_bagel_on_screen(table_bagel)
-            show_bagel_on_screen(cal_bagel)
-            show_bagel_on_screen(meeting_bagel)
-            show_bagel_on_screen(slack_bagel)
-            show_bagel_on_screen(click_bagel)
+            show_bagel_on_screen(table_game)
+            show_bagel_on_screen(calendar_game)
+            show_bagel_on_screen(meeting_game)
+            show_bagel_on_screen(slack_game)
+            show_bagel_on_screen(click_game)
 
 
 
