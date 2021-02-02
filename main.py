@@ -6,6 +6,7 @@ from Games.Meeting_beer import Meeting_beer
 from Games.Slack_pepe import Slack_pepe
 from Games.Click_rhythm import Click_game
 from Games.Manager import Manager
+from Front_page import Front_page
 from pygame.locals import (
     QUIT,
     Rect,
@@ -59,7 +60,6 @@ allowed_key_input = [K_SPACE, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTO
 
 def main():
     # 메시지 렌더링 초기화
-    main_title_message = FONT_60.render("A Grand Journey to become a True Bagel", True, BLACK)
 
     on_game = False
 
@@ -68,6 +68,9 @@ def main():
     register_all_games(game_manager)
 
     click_game = Click_game()
+
+    front_page = Front_page()
+
 
 
     while True:
@@ -92,11 +95,13 @@ def main():
                 click_game.update()
 
         if not on_game: # 시작 페이지
-            show_message_on_screen_center(main_title_message)
+            front_page.render(SURFACE)
+            # draw_lines_for_locate_debug()
 
         if on_game:
             draw_grid_line()
             game_manager.render_all(SURFACE)
+
 
         # 윈도우에 화면 출력
         pygame.display.flip()
