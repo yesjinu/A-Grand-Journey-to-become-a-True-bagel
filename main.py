@@ -90,6 +90,7 @@ def main():
         if on_game:
             game_manager.render_all(SURFACE)
 
+
         # draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
@@ -137,6 +138,10 @@ def register_all_games(game_manager):
     game_manager.add_to_game_list(meeting_game)
     game_manager.add_to_game_list(slack_game)
     game_manager.add_to_game_list(click_game)
+
+def log_mouse_position():
+    x, y = pygame.mouse.get_pos()
+    print(x, y)
 
 if __name__ == "__main__":
     main()

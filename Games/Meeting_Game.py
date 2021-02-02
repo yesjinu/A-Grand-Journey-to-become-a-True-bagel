@@ -1,5 +1,6 @@
 import pygame
 from Games.Manager import Manager
+from random import randint
 from pygame.locals import (
     Rect,
     K_SPACE
@@ -24,9 +25,17 @@ class Meeting_beer(Manager):
         self.toggle = True
 
         # 모니터
-        self.monitor_black_image = pygame.image.load('images/monitor.png')
-        self.resized_monitor_black_image = pygame.transform.scale(self.monitor_black_image, (384, 300))
+        self.monitor_black_image = pygame.transform.scale(pygame.image.load('images/monitor.png'), (384, 300))
         # self.monitor_beer_bagel_image = pygame.image.load('images/monitor_beer_bagel.png')
+
+        self.monitor_front_both = pygame.transform.scale(pygame.image.load('images/monitor_front_both.png'), (340, 215))
+        self.monitor_front_one1 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
+        self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_12.png'), (340, 215))
+        self.monitor_side_both = pygame.transform.scale(pygame.image.load('images/monitor_side_both.png'), (340, 215))
+
+        self.random_picked_number = randint(0, 3)
+        self.picked_map = self.load_random_map(self.random_picked_number)
+
 
     # Move the sprite based on user key presses
     def keydown_flagger(self, event_key):
@@ -45,7 +54,20 @@ class Meeting_beer(Manager):
 
     def render(self, SURFACE):
         # 모니터 게임
-        SURFACE.blit(self.resized_monitor_black_image, (200, 400))
-        # SURFACE.blit(self.monitor_beer_bagel_image, (50, 510))
+        SURFACE.blit(self.monitor_black_image, (200, 400))
+        SURFACE.blit(self.picked_map, (221, 420))
         SURFACE.blit(self.surf, self.rect)
+
+    def load_random_map(self, random_pick):
+        if random_pick == 1:
+            return self.monitor_front_both
+        elif random_pick == 2:
+            return self.monitor_front_one1
+        elif random_pick == 3:
+            return self.monitor_front_one2
+        else:
+            return self.monitor_side_both
+
+    # def check(self):
+
 
