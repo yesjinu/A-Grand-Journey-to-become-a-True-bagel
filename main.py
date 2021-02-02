@@ -83,6 +83,16 @@ def main():
     calendar_new_image = pygame.image.load('images/calendar_new.png')
     resized_calendar_new_image = pygame.transform.scale(calendar_new_image, (143, 40))
 
+    slack_good_image = pygame.image.load('images/slack_good_kpi.png')
+    slack_bad_image = pygame.image.load('images/slack_bad_kpi.png')
+    resized_slack_good_image = pygame.transform.scale(slack_good_image, (500, 300))
+    resized_slack_bad_image = pygame.transform.scale(slack_bad_image, (500, 300))
+
+    slack_pepe_good_image = pygame.image.load('images/slack_pepe_good.png')
+    slack_pepe_mad_image = pygame.image.load('images/slack_pepe_mad.png')
+    resized_slack_pepe_good_image = pygame.transform.scale(slack_pepe_good_image, (100, 100))
+    resized_slack_pepe_mad_image = pygame.transform.scale(slack_pepe_mad_image, (100, 100))
+
 
 
 
@@ -155,7 +165,11 @@ def main():
             SURFACE.blit(resized_calendar_new_image, (900, 150))
             SURFACE.blit(resized_calendar_new_image, (900, 260))
 
-            draw_lines_for_locate_debug()
+            # 슬랙 게임
+            SURFACE.blit(resized_slack_good_image, (700, 400))
+            SURFACE.blit(resized_slack_pepe_good_image, (1000, 570))
+
+            # draw_lines_for_locate_debug()
 
 
 
