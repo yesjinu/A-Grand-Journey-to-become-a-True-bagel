@@ -37,7 +37,7 @@ class Table_sitting(Manager):
         self.pos_idx = 0
         self.possible_place = [(130, 170), (210, 170), (290, 170), (375, 170), (455, 170)]
 
-        self.random_picked_number = randint(2, 5)
+        self.random_picked_number = randint(1, 4)
         self.picked_map = self.load_random_map(self.random_picked_number)
 
     # Move the sprite based on user key presses
@@ -83,7 +83,7 @@ class Table_sitting(Manager):
             self.correct()
         else:
             self.wrong()
-        print(super().get_score())
+        print(self.pos_idx, self.random_picked_number, super().get_score())
 
 
 
