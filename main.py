@@ -100,7 +100,7 @@ def main():
         if on_game:
             game_manager.render_all(SURFACE)
 
-        draw_lines_for_locate_debug()
+        # draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)

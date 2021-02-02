@@ -21,11 +21,12 @@ class Meeting_beer(Manager):
         self.rect = Rect(50, 510, 103, 160)
 
         self.space_keydown_flag = False
+        self.toggle = True
 
         # 모니터
         self.monitor_black_image = pygame.image.load('images/monitor.png')
+        self.resized_monitor_black_image = pygame.transform.scale(self.monitor_black_image, (384, 300))
         # self.monitor_beer_bagel_image = pygame.image.load('images/monitor_beer_bagel.png')
-        # self.resized_monitor_black_image = pygame.transform.scale(self.monitor_black_image, (384, 300))
 
     # Move the sprite based on user key presses
     def keydown_flagger(self, event_key):
@@ -34,13 +35,17 @@ class Meeting_beer(Manager):
 
     def update(self, event_key):
         if event_key == K_SPACE and self.space_keydown_flag:
-            print("Meeting bagle, SPACE detected")
-            self.surf = pygame.image.load('images/monitor_beer_bagel.png')
+            if self.toggle:
+                self.surf = pygame.image.load('images/monitor_beer_bagel.png')
+                self.toggle = False
+            else:
+                self.surf = pygame.image.load('images/monitor_idle_bagel.png')
+                self.toggle = True
             self.space_keydown_flag = False
 
     def render(self, SURFACE):
         # 모니터 게임
-        # SURFACE.blit(self.resized_monitor_black_image, (200, 400))
+        SURFACE.blit(self.resized_monitor_black_image, (200, 400))
         # SURFACE.blit(self.monitor_beer_bagel_image, (50, 510))
         SURFACE.blit(self.surf, self.rect)
 
