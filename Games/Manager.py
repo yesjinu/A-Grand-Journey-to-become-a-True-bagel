@@ -13,18 +13,17 @@ class Manager(pygame.sprite.Sprite):
         super(Manager, self).__init__()
         self.game_list = []
 
-    def click_down_flagger(self):
-        pass
-
-    # TODO 이미지 결과에 따라 움직임 제한할 것
-    def click_up_detector(self):
-        pass
-
-    def update(self):
-        pass
-
-    def render(self):
-        pass
-
     def add_to_game_list(self, new_game):
         self.game_list.append(new_game)
+
+    def detect_key_all(self, event_key):
+        for game in self.game_list:
+            game.keydown_flagger(event_key)
+
+    def update_all(self, event_key):
+        for game in self.game_list:
+            game.update(event_key)
+
+    def render_all(self, SURFACE):
+        for game in self.game_list:
+            game.render(SURFACE)
