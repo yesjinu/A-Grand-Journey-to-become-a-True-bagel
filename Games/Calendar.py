@@ -17,6 +17,7 @@ RED = (255, 0, 0)
 class Calendar(Manager):
     def __init__(self):
         super(Calendar, self).__init__()
+        super().add_to_game_list(self)
         self.surf = pygame.Surface((25, 50))
         self.surf.fill(BLACK)
         self.rect = Rect(640, 0, 25, 50)

@@ -16,6 +16,7 @@ RED = (255, 0, 0)
 class Slack_pepe(Manager):
     def __init__(self):
         super(Slack_pepe, self).__init__()
+        super().add_to_game_list(self)
         self.surf = pygame.Surface((25, 50))
         self.surf.fill(BLACK)
         self.rect = Rect(640, 360, 25, 50)

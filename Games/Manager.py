@@ -1,8 +1,4 @@
 import pygame
-from pygame.locals import (
-    Rect,
-)
-from abc import ABC
 
 # default color
 WHITE = (255, 255, 255)
@@ -15,6 +11,7 @@ RED = (255, 0, 0)
 class Manager(pygame.sprite.Sprite):
     def __init__(self):
         super(Manager, self).__init__()
+        self.game_list = []
 
     def click_down_flagger(self):
         pass
@@ -28,3 +25,6 @@ class Manager(pygame.sprite.Sprite):
 
     def render(self):
         pass
+
+    def add_to_game_list(self, new_game):
+        self.game_list.append(new_game)

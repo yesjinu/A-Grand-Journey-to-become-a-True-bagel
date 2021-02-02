@@ -16,6 +16,7 @@ RED = (255, 0, 0)
 class Click_game(Manager):
     def __init__(self):
         super(Click_game, self).__init__()
+        super().add_to_game_list(self)
         self.surf = pygame.Surface((50, 50))
         self.surf.fill(BLACK)
         self.rect = Rect(630, 350, 50, 50)
@@ -29,10 +30,4 @@ class Click_game(Manager):
     # TODO 이미지 결과에 따라 움직임 제한할 것
     def click_up_detector(self):
         if self.mouse_down_flag:
-            if self.surf.get_colorkey() == BLACK:
-                print("black")
-                self.surf.fill(RED)
-            else:
-                print("red")
-                self.surf.fill(BLACK)
             self.mouse_down_flag = False

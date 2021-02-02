@@ -15,6 +15,7 @@ RED = (255, 0, 0)
 class Meeting_beer(Manager):
     def __init__(self):
         super(Meeting_beer, self).__init__()
+        super().add_to_game_list(self)
         self.surf = pygame.Surface((25, 50))
         self.surf.fill(BLACK)
         self.rect = Rect(0, 360, 25, 50)

@@ -17,6 +17,7 @@ RED = (255, 0, 0)
 class Table_sitting(Manager):
     def __init__(self):
         super(Table_sitting, self).__init__()
+        super().add_to_game_list(self)
         self.surf = pygame.Surface((25, 50))
         self.surf.fill(BLACK)
         self.rect = Rect(0, 0, 25, 50)
