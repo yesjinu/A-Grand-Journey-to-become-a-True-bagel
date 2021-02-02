@@ -1,5 +1,6 @@
 import pygame
 from Games.Manager import Manager
+from random import randint
 from pygame.locals import (
     Rect,
     K_a,
@@ -25,13 +26,19 @@ class Table_sitting(Manager):
         self.d_keydown_flag = False
         self.q_keydown_flag = False
 
-        self.table_people_image = pygame.image.load('images/table_people_2.png')
+        self.table_people_image_2 = pygame.transform.scale(pygame.image.load('images/table_people_2.png'), (500, 150))
+        self.table_people_image_3 = pygame.transform.scale(pygame.image.load('images/table_people_3.png'), (500, 150))
+        self.table_people_image_4 = pygame.transform.scale(pygame.image.load('images/table_people_4.png'), (500, 150))
+        self.table_people_image_5 = pygame.transform.scale(pygame.image.load('images/table_people_5.png'), (500, 150))
         self.table_idle_bagel_image = pygame.image.load('images/table_idle_bagel.png')
-        self.resized_table_people_image = pygame.transform.scale(self.table_people_image, (500, 150))
+
 
         # self.first_position = (20, 170)
         self.pos_idx = -1
         self.possible_place = [(130, 170), (210, 170), (290, 170), (375, 170), (455, 170)]
+
+        random_picked_map = randint(2, 5)
+        self.picked_map = self.load_random_map(random_picked_map)
 
     # Move the sprite based on user key presses
     def keydown_flagger(self, event_key):
@@ -60,6 +67,16 @@ class Table_sitting(Manager):
             self.surf.fill(RED)
 
     def render(self, SURFACE):
-        SURFACE.blit(self.resized_table_people_image, (80, 100))
+        SURFACE.blit(self.picked_map, (80, 100))
         SURFACE.blit(self.surf, self.rect)
+
+    def load_random_map(self, random_pick):
+        if random_pick == 2:
+            return self.table_people_image_2
+        elif random_pick == 3:
+            return self.table_people_image_3
+        elif random_pick == 4:
+            return self.table_people_image_4
+        else:
+            return self.table_people_image_5
 

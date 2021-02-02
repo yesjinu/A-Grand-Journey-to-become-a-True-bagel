@@ -66,8 +66,7 @@ def main():
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
     game_manager = Manager()
     register_all_games(game_manager)
-
-    click_game = Click_game()
+    click_game = game_manager.game_list[-1]
 
     front_page = Front_page()
 
@@ -92,7 +91,7 @@ def main():
             elif event.type == MOUSEBUTTONDOWN:
                 click_game.click_down_flagger()
             elif event.type == MOUSEBUTTONUP:
-                click_game.update()
+                click_game.update(None)
 
         if not on_game: # 시작 페이지
             front_page.render(SURFACE)
@@ -140,12 +139,13 @@ def register_all_games(game_manager):
     calendar_game = Calendar()
     meeting_game = Meeting_beer()
     slack_game = Slack_pepe()
+    click_game = Click_game()
 
     game_manager.add_to_game_list(table_game)
     game_manager.add_to_game_list(calendar_game)
     game_manager.add_to_game_list(meeting_game)
     game_manager.add_to_game_list(slack_game)
-
+    game_manager.add_to_game_list(click_game)
 
 if __name__ == "__main__":
     main()

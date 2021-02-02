@@ -17,9 +17,8 @@ class Click_game(Manager):
     def __init__(self):
         super(Click_game, self).__init__()
         # super().add_to_game_list(self)
-        self.surf = pygame.Surface((50, 50))
-        self.surf.fill(BLACK)
-        self.rect = Rect(630, 350, 50, 50)
+        self.surf = pygame.transform.scale(pygame.image.load('images/click_square.png'), (100, 100))
+        self.rect = Rect(590, 310, 100, 100)
 
         self.mouse_down_flag = False
 
@@ -27,12 +26,15 @@ class Click_game(Manager):
     def click_down_flagger(self):
         self.mouse_down_flag = True
 
+    def keydown_flagger(self, event_key):
+        pass
+
     # TODO 이미지 결과에 따라 움직임 제한할 것
-    def update(self):
+    def update(self, event_key):
         if self.mouse_down_flag:
             print("click updated")
             self.mouse_down_flag = False
 
 
     def render(self, SURFACE):
-        pass
+        SURFACE.blit(self.surf, self.rect)
