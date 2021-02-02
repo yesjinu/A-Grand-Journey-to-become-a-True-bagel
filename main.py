@@ -96,13 +96,11 @@ def main():
 
         if not on_game: # 시작 페이지
             front_page.render(SURFACE)
-            # draw_lines_for_locate_debug()
 
         if on_game:
-            draw_grid_line()
             game_manager.render_all(SURFACE)
 
-
+        draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)
@@ -111,9 +109,6 @@ def main():
 def align_message_center_of_screen(message):
     return ((WINDOW_WIDTH - message.get_width()) / 2, (WINDOW_HEIGHT - message.get_height()) / 2)
 
-def draw_grid_line():
-    pygame.draw.line(SURFACE, BLACK, (0, 360), (1280, 360), 4)
-    pygame.draw.line(SURFACE, BLACK, (640, 0), (640, 720), 4)
 
 def show_bagel_on_screen(bagel):
     SURFACE.blit(bagel.surf, bagel.rect)

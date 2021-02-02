@@ -4,6 +4,7 @@ import pygame
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
+GRAY = (229, 229, 229)
 
 
 # 왼쪽
@@ -25,5 +26,11 @@ class Manager(pygame.sprite.Sprite):
             game.update(event_key)
 
     def render_all(self, SURFACE):
+        SURFACE.fill(GRAY)
+        self.draw_grid_line(SURFACE)
         for game in self.game_list:
             game.render(SURFACE)
+
+    def draw_grid_line(self, SURFACE):
+        pygame.draw.line(SURFACE, BLACK, (0, 360), (1280, 360), 4)
+        pygame.draw.line(SURFACE, BLACK, (640, 0), (640, 720), 4)
