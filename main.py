@@ -1,10 +1,10 @@
 import pygame
 import sys
-from Games.Table_sitting import Table_sitting
-from Games.Calendar import Calendar
-from Games.Meeting_beer import Meeting_beer
-from Games.Slack_pepe import Slack_pepe
-from Games.Click_rhythm import Click_game
+from Games.Table_Game import Table_sitting
+from Games.Calendar_Game import Calendar
+from Games.Meeting_Game import Meeting_beer
+from Games.Slack_Game import Slack_pepe
+from Games.Clicking_Game import Click_game
 from Games.Manager import Manager
 from Front_page import Front_page
 from pygame.locals import (
@@ -31,19 +31,8 @@ pygame.display.set_caption("A Grand Journey to become a True Bagel")
 
 # window에 대한 정보. 일단 전체화면이 아닌 고정 윈도우로
 WINDOW_WIDTH = 1280
-WINDOW_HEIGHT = 720
+WINDOW_HEIGHT = 720 + 100
 SURFACE = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
-
-# offset
-#  -----------
-# |  1  |  2  |
-# -------------
-# |  3  |  4  |
-#  -----------
-# FIRST_SCREEN_OFFSET = (0, 0)
-# SECOND_SCREEN_OFFSET = (640, 0)
-# THIRD_SCREEN_OFFSET = (0, 360)
-# FOURTH_SCREEN_OFFSET = (640, 360)
 
 # clock을 초기
 FPSCLOCK = pygame.time.Clock()
@@ -58,6 +47,8 @@ BLACK = (0, 0, 0)
 
 allowed_key_input = [K_SPACE, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 
+
+# 이 게임은 하드코딩으로 제작되었습니다. 윈도우 사이즈 변경이 안 되는 점 이해해주시기 바랍니다.
 def main():
     # 메시지 렌더링 초기화
 
