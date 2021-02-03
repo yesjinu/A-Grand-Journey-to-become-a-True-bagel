@@ -66,7 +66,7 @@ BLACK = (0, 0, 0)
 allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 page_key_input = [K_0, K_7, K_8, K_9]
 
-text_input = Input_name.TextInput()
+text_input = Input_name.TextInput(initial_string="remove this line and type your name")
 
 
 def main():
@@ -123,6 +123,7 @@ def main():
                 click_game.click_down_flagger()
             elif event.type == MOUSEBUTTONUP:
                 click_game.update(None)
+                page_flag = click_button(pygame.mouse.get_pos(), page_flag)
 
         # 시작 페이지
         if page_flag == K_0:
@@ -153,13 +154,36 @@ def main():
             pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
-        # draw_lines_for_locate_debug()
+        draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)
 
     print("***** MAIN CALLED *****")
     main()
+
+
+def click_button(mouse_pos, page_flag):
+    x_pos = mouse_pos[0]
+    y_pos = mouse_pos[1]
+    if page_flag == K_0:
+        if 70 <= x_pos <= 430 and 700 <= y_pos <= 800:
+            return K_7
+        elif 515 <= x_pos <= 765 and 700 <= y_pos <= 800:
+            return K_8
+        elif 880 <= x_pos <= 1210 and 700 <= y_pos <= 800:
+            return K_9
+        else:
+            return K_0
+    elif page_flag == K_7 or page_flag == K_9:
+        if 50 <= x_pos <= 150 and 50 <= y_pos <= 150:
+            return K_0
+        else:
+            return page_flag
+    elif page_flag == K_8:
+        if 20 <= x_pos <= 80 and 740 <= y_pos <= 800:
+            return K_0
+
 
 
 def draw_lines_for_locate_debug():

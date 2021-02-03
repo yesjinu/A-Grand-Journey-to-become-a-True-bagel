@@ -36,6 +36,8 @@ class Game(pygame.sprite.Sprite):
         self.game_list = []
         self.game_over_image = pygame.image.load('images/game_over.png')
         self.game_end_popup_image = pygame.image.load('images/game_end_popup.png')
+        self.back_icon_image = pygame.transform.scale(pygame.image.load('images/icon_back.png'), (60, 60))
+
 
         Game.music_start_time = time.time()
 
@@ -93,6 +95,7 @@ class Game(pygame.sprite.Sprite):
                 game.render(SURFACE)
             self.score_message = pygame.font.SysFont(None, 60).render(f'Score : {self.get_score()}', False, (0, 0, 0))
             SURFACE.blit(self.score_message, (1000, 750))
+            SURFACE.blit(self.back_icon_image, (20, 740))
 
         if Game.is_finished:
             SURFACE.blit(self.game_end_popup_image, (65, 0))
@@ -125,8 +128,8 @@ class Game(pygame.sprite.Sprite):
 
     def is_music_ended(self):
         # print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
-        # if time.time() - Game.music_start_time > il_jul:
-        if time.time() - Game.music_start_time > 5:
+        if time.time() - Game.music_start_time > il_jul:
+        # if time.time() - Game.music_start_time > 5:
             Game.is_finished = True
 
     def get_now_time(self):
