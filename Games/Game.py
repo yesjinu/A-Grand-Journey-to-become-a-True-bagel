@@ -25,7 +25,6 @@ class Game(pygame.sprite.Sprite):
     def __init__(self):
         super(Game, self).__init__()
         self.game_list = []
-
         self.game_over_image = pygame.image.load('images/game_over.png')
 
         Game.game_start_time = time.time()
@@ -43,7 +42,9 @@ class Game(pygame.sprite.Sprite):
     def update_all(self, event_key):
         for game in self.game_list:
             game.update(event_key)
-        if time.time() - Game.game_start_time:
+
+        print(time.time(), Game.game_start_time, time.time() - Game.game_start_time)
+        if time.time() - Game.game_start_time > 155:
             Game.is_ended = True
             # TODO: 랭크서버에 접속해서 기록을 남겨야 함.
 
@@ -59,6 +60,7 @@ class Game(pygame.sprite.Sprite):
             SURFACE.blit(self.score_message, (640, 720))
 
         if Game.is_ended:
+            print("score:", Game.score)
             SURFACE.blit(self.game_over_image, (40, 0))
             if Game.user_press_restart:
                 self.reset_class()
@@ -94,6 +96,7 @@ class Game(pygame.sprite.Sprite):
     # 딱 한번만 호출
     def start_games(self):
         # 시작 시간 기록
+        self.reset_class()
         Game.game_start_time = time.time()
         Game.barometer = Game.game_start_time
 
@@ -114,5 +117,5 @@ class Game(pygame.sprite.Sprite):
 
     def reset_class(self):
         Game.is_ended = False
-        Game.score = 100
+        Game.score = 10
         Game.user_press_restart = False

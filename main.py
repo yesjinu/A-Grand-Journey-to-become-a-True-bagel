@@ -27,6 +27,7 @@ from pygame.locals import (
     K_e,
     K_r,
     K_f,
+
     K_p,
 
     K_0, # front page
@@ -65,7 +66,7 @@ page_key_input = [K_0, K_1, K_2, K_3]
 
 def main():
     # print(get_rank())
-    print(update_rank())
+    # print(update_rank())
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
     game_manager = Game()
     register_all_games(game_manager)
