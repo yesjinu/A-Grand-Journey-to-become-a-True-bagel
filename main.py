@@ -29,11 +29,11 @@ from pygame.locals import (
     K_f,
 
     K_p,
-
     K_0, # front page
-    K_1, # tutorial
-    K_2, # start
-    K_3, # ranking
+
+    K_7, # tutorial
+    K_8, # start
+    K_9, # ranking
 
     K_SPACE,
     MOUSEBUTTONUP,
@@ -61,7 +61,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
-page_key_input = [K_0, K_1, K_2, K_3]
+page_key_input = [K_0, K_7, K_8, K_9]
 
 
 def main():
@@ -104,13 +104,13 @@ def main():
             front_page.render(SURFACE)
 
         # 튜토리얼 페이지
-        elif page_flag == K_1:
+        elif page_flag == K_7:
             on_game = False
             pygame.mixer.music.stop()
             tutorial_page.render(SURFACE)
 
         # 게임 페이지
-        elif page_flag == K_2:
+        elif page_flag == K_8:
             # 게임 점수 초기화를 여기에서 실행
             if not on_game:
                 # print("Call only once")
@@ -121,7 +121,7 @@ def main():
                 break
 
         # 랭킹 페이지
-        elif page_flag == K_3:
+        elif page_flag == K_9:
             on_game = False
             pygame.mixer.music.stop()
             ranking_page.render(SURFACE)

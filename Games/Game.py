@@ -60,9 +60,10 @@ class Game(pygame.sprite.Sprite):
 
     def detect_key_all(self, event_key):
         if Game.is_ended or Game.is_finished:
-            if event_key == K_p:
-                print("user press restart")
-                Game.user_press_restart = True
+            Game.user_press_restart = True
+            # if event_key == K_p:
+            #     print("user press restart")
+            #     Game.user_press_restart = True
         else:
             for game in self.game_list:
                 game.keydown_flagger(event_key)
