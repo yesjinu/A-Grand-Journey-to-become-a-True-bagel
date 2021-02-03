@@ -26,12 +26,15 @@ class Click_game(Game):
         self.previous_time = Game.music_start_time + ONE_BPM * 4
         self.current_time = Game.music_start_time + ONE_BPM * 4
 
+
+
     # Move the sprite based on user key presses
     def click_down_flagger(self):
         self.mouse_down_flag = True
         self.previous_time = self.current_time
         self.current_time = time.time()
-        self.check()
+        # self.check()
+        # print(self.current_time - self.previous_time)
 
     def keydown_flagger(self, event_key):
         pass
@@ -39,23 +42,28 @@ class Click_game(Game):
     # TODO 이미지 결과에 따라 움직임 제한할 것
     def update(self, event_key):
         if self.mouse_down_flag:
-            print("click updated")
             self.mouse_down_flag = False
 
 
+    def purser_every_bpm(self):
+        if time.time() - self.previous_time > ONE_BPM:
+            print("tick")
+            self.check()
+
     def render(self, SURFACE):
+        self.purser_every_bpm()
         # SURFACE.blit(self.surf, self.rect)
         pass
+
+
     def check(self):
-        print(self.current_time)
+        # print(self.current_time)
         print(self.get_diff())
         if self.get_diff() < 0.08:
-            Game.score += 1
-            print("correct")
+            self.correct()
         else:
-            Game.score -= 1
-            print("wrong!")
-
+            self.wrong()
+        self.previous_time = time.time()
 
     def get_diff(self):
         return abs(self.current_time - (self.previous_time + ONE_BPM))
@@ -63,3 +71,11 @@ class Click_game(Game):
 
     def update_map(self):
         pass
+
+    def correct(self):
+        Game.score += 2
+
+    def wrong(self):
+        Game.score -= 1
+        if Game.score <= 0:
+            self.end_game()
