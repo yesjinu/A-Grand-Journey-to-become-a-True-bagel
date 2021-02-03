@@ -7,11 +7,13 @@ from Games.Calendar_Game import Calendar
 from Games.Meeting_Game import Meeting_beer
 from Games.Slack_Game import Slack_pepe
 from Games.Clicking_Game import Click_game
-from Games.Manager import Manager
+from Games.Game import Game
 
 from Pages.Front_page import Front_page
 from Pages.Ranking_page import Ranking_page
 from Pages.Tutorial_page import Tutorial_page
+
+from Rank import (get_rank, update_rank)
 
 from pygame.locals import (
     QUIT,
@@ -26,15 +28,18 @@ from pygame.locals import (
     K_r,
     K_f,
     K_p,
+
     K_0, # front page
     K_1, # tutorial
     K_2, # start
     K_3, # ranking
+
     K_SPACE,
     MOUSEBUTTONUP,
     MOUSEBUTTONDOWN
 )
 
+pygame.mixer.init()
 pygame.init()
 pygame.display.set_caption("A Grand Journey to become a True Bagel")
 
@@ -54,14 +59,15 @@ FONT_24 = pygame.font.SysFont(None, 24)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
-allowed_key_input = [K_SPACE, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
+allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 page_key_input = [K_0, K_1, K_2, K_3]
 
 
 def main():
-
+    # print(get_rank())
+    print(update_rank())
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
-    game_manager = Manager()
+    game_manager = Game()
     register_all_games(game_manager)
     click_game = game_manager.game_list[-1]
 
@@ -71,7 +77,6 @@ def main():
 
     page_flag = K_0
     on_game = False
-    already_started = False
     while True:
         # input 받는 부분
         for event in pygame.event.get():
@@ -105,11 +110,12 @@ def main():
         elif page_flag == K_2:
             # 게임 점수 초기화를 여기에서 실행
             if not on_game:
-                print("Call only once")
+                # print("Call only once")
                 game_manager.start_games()
                 on_game = True
 
-            game_manager.render_all(SURFACE)
+            if game_manager.render_all(SURFACE):
+                break
 
         # 랭킹 페이지
         elif page_flag == K_3:
@@ -120,6 +126,9 @@ def main():
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)
+
+    print("***** MAIN CALLED *****")
+    main()
 
 
 def draw_lines_for_locate_debug():

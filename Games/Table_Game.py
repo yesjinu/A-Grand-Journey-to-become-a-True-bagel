@@ -1,5 +1,5 @@
 import pygame
-from Games.Manager import Manager
+from Games.Game import Game
 from random import randint
 from pygame.locals import (
     Rect,
@@ -15,7 +15,7 @@ RED = (255, 0, 0)
 
 # 왼쪽
 # 테이블 빈 자리를 찾아가서 앉아주세요. (a, d, q)
-class Table_sitting(Manager):
+class Table_sitting(Game):
     def __init__(self):
         super(Table_sitting, self).__init__()
         self.surf = pygame.image.load('images/table_idle_bagel.png')

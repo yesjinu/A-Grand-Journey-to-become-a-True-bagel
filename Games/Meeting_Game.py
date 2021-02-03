@@ -1,5 +1,5 @@
 import pygame
-from Games.Manager import Manager
+from Games.Game import Game
 from random import randint
 from pygame.locals import (
     Rect,
@@ -14,7 +14,7 @@ RED = (255, 0, 0)
 
 # 왼쪽 아래
 # 대표님이 고개를 돌릴 때 스페이스바를 눌러 맥주를 마시세요
-class Meeting_beer(Manager):
+class Meeting_beer(Game):
     def __init__(self):
         super(Meeting_beer, self).__init__()
         self.surf = pygame.image.load('images/monitor_idle_bagel.png')

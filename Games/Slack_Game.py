@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-from Games.Manager import Manager
+from Games.Game import Game
 from pygame.locals import (
     Rect,
     K_r,
@@ -15,7 +15,7 @@ RED = (255, 0, 0)
 
 # 오른쪽 아
 # Daily revenue가 증가하면 r을 눌러 pepe_ddabong을 감소하면 f를 눌러 pepe_sad를 날려주세요
-class Slack_pepe(Manager):
+class Slack_pepe(Game):
     def __init__(self):
         super(Slack_pepe, self).__init__()
         # super().add_to_game_list(self)

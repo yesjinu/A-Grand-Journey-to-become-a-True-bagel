@@ -1,5 +1,5 @@
 import pygame
-from Games.Manager import Manager
+from Games.Game import Game
 from random import randint
 from pygame.locals import (
     Rect,
@@ -15,7 +15,7 @@ RED = (255, 0, 0)
 
 # 오른쪽 위
 # 캘린더에서 s(아래)로, w(위)로, e(확정)로 빈 시간에 일정을 넣어주세요.
-class Calendar(Manager):
+class Calendar(Game):
     def __init__(self):
         super(Calendar, self).__init__()
         # super().add_to_game_list(self)
