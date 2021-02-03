@@ -28,11 +28,17 @@ class Calendar(Manager):
         self.s_keydown_flag = False
         self.e_keydown_flag = False
 
+        self.is_correct = None
+
         # 캘린더
         self.calendar_0_image = pygame.transform.scale(pygame.image.load('images/calendar_0.png'), (500, 300))
         self.calendar_1_image = pygame.transform.scale(pygame.image.load('images/calendar_1.png'), (500, 300))
         self.calendar_2_image = pygame.transform.scale(pygame.image.load('images/calendar_2.png'), (500, 300))
         self.calendar_new_image = pygame.transform.scale(pygame.image.load('images/calendar_new.png'), (143, 40))
+
+        self.correct_image = pygame.transform.scale(pygame.image.load('images/correct.png'), (200, 200))
+        self.wrong_image = pygame.transform.scale(pygame.image.load('images/wrong.png'), (200, 200))
+
 
         # self.first_position = (640, 0)
         self.pos_idx = 0
@@ -53,25 +59,31 @@ class Calendar(Manager):
             self.e_keydown_flag = True
 
     def update(self, event_key):
-        if event_key == K_s and self.s_keydown_flag:
-            if self.pos_idx < 2:
-                self.pos_idx += 1
-            self.rect = self.possible_place[self.pos_idx]
-            self.s_keydown_flag = False
-        elif event_key == K_w and self.w_keydown_flag:
-            if self.pos_idx > 0:
-                self.pos_idx -= 1
-            self.rect = self.possible_place[self.pos_idx]
-            self.w_keydown_flag = False
-        elif event_key == K_e and self.e_keydown_flag:
-            self.check()
+        if self.is_correct is None:
+            if event_key == K_s and self.s_keydown_flag:
+                if self.pos_idx < 2:
+                    self.pos_idx += 1
+                self.rect = self.possible_place[self.pos_idx]
+                self.s_keydown_flag = False
+            elif event_key == K_w and self.w_keydown_flag:
+                if self.pos_idx > 0:
+                    self.pos_idx -= 1
+                self.rect = self.possible_place[self.pos_idx]
+                self.w_keydown_flag = False
+            elif event_key == K_e and self.e_keydown_flag:
+                self.check()
 
 
     def render(self, SURFACE):
         # 캘린더 게임
         SURFACE.blit(self.picked_map, (700, 20))
         SURFACE.blit(self.surf, self.rect)
-
+        if self.is_correct is None:
+            pass # do nothing
+        elif self.is_correct:
+            SURFACE.blit(self.correct_image, (860, 80))
+        else:
+            SURFACE.blit(self.wrong_image, (860, 80))
 
     def load_random_map(self, random_pick):
         if random_pick == 0:
@@ -84,11 +96,14 @@ class Calendar(Manager):
     def check(self):
         if self.pos_idx == self.random_picked_number:
             self.correct()
-            self.update_map()
+            self.is_correct = True
+            # self.update_map()
         else:
             self.wrong()
+            self.is_correct = False
         print(super().get_score())
 
     def update_map(self):
         self.random_picked_number = randint(0, 2)
         self.picked_map = self.load_random_map(self.random_picked_number)
+        self.is_correct = None

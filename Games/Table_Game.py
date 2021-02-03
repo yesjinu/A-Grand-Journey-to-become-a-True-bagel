@@ -26,12 +26,16 @@ class Table_sitting(Manager):
         self.d_keydown_flag = False
         self.q_keydown_flag = False
 
+        self.is_correct = None
+
         self.table_people_image_1 = pygame.transform.scale(pygame.image.load('images/table_people_1.png'), (500, 150))
         self.table_people_image_2 = pygame.transform.scale(pygame.image.load('images/table_people_2.png'), (500, 150))
         self.table_people_image_3 = pygame.transform.scale(pygame.image.load('images/table_people_3.png'), (500, 150))
         self.table_people_image_4 = pygame.transform.scale(pygame.image.load('images/table_people_4.png'), (500, 150))
         self.table_idle_bagel_image = pygame.image.load('images/table_idle_bagel.png')
 
+        self.correct_image = pygame.transform.scale(pygame.image.load('images/correct.png'), (200, 200))
+        self.wrong_image = pygame.transform.scale(pygame.image.load('images/wrong.png'), (200, 200))
 
         # self.first_position = (20, 170)
         self.pos_idx = 0
@@ -51,22 +55,29 @@ class Table_sitting(Manager):
 
     # TODO 이미지 결과에 따라 움직임 제한할 것
     def update(self, event_key):
-        if event_key == K_a and self.a_keydown_flag:
-            if self.pos_idx > 0:
-                self.pos_idx -= 1
-            self.rect = self.possible_place[self.pos_idx]
-            self.a_keydown_flag = False
-        elif event_key == K_d and self.d_keydown_flag:
-            if self.pos_idx < 4:
-                self.pos_idx += 1
-            self.rect = self.possible_place[self.pos_idx]
-            self.d_keydown_flag = False
-        elif event_key == K_q and self.q_keydown_flag:
-            self.check()
+        if self.is_correct is None:
+            if event_key == K_a and self.a_keydown_flag:
+                if self.pos_idx > 0:
+                    self.pos_idx -= 1
+                self.rect = self.possible_place[self.pos_idx]
+                self.a_keydown_flag = False
+            elif event_key == K_d and self.d_keydown_flag:
+                if self.pos_idx < 4:
+                    self.pos_idx += 1
+                self.rect = self.possible_place[self.pos_idx]
+                self.d_keydown_flag = False
+            elif event_key == K_q and self.q_keydown_flag:
+                self.check()
 
     def render(self, SURFACE):
         SURFACE.blit(self.picked_map, (80, 100))
         SURFACE.blit(self.surf, self.rect)
+        if self.is_correct is None:
+            pass # do nothing
+        elif self.is_correct:
+            SURFACE.blit(self.correct_image, (220, 80))
+        else:
+            SURFACE.blit(self.wrong_image, (220, 80))
 
     def load_random_map(self, random_pick):
         if random_pick == 1:
@@ -81,16 +92,18 @@ class Table_sitting(Manager):
     def check(self):
         if self.pos_idx == self.random_picked_number:
             self.correct()
-            self.update_map()
+            self.is_correct = True
+            # self.update_map()
         else:
             self.wrong()
+            self.is_correct = False
         print(super().get_score())
         # print(self.pos_idx, self.random_picked_number, super().get_score())
 
     def update_map(self):
         self.random_picked_number = randint(1, 4)
         self.picked_map = self.load_random_map(self.random_picked_number)
-
+        self.is_correct = None
 
 
 

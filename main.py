@@ -1,3 +1,5 @@
+import time
+
 import pygame
 import sys
 from Games.Table_Game import Table_sitting
@@ -67,9 +69,9 @@ def main():
     tutorial_page = Tutorial_page()
     ranking_page = Ranking_page()
 
-
     page_flag = K_0
     on_game = False
+    already_started = False
     while True:
         # input 받는 부분
         for event in pygame.event.get():
@@ -101,7 +103,12 @@ def main():
 
         # 게임 페이지
         elif page_flag == K_2:
-            on_game = True
+            # 게임 점수 초기화를 여기에서 실행
+            if not on_game:
+                print("Call only once")
+                game_manager.start_games()
+                on_game = True
+
             game_manager.render_all(SURFACE)
 
         # 랭킹 페이지
@@ -109,7 +116,7 @@ def main():
             on_game = False
             ranking_page.render(SURFACE)
 
-        # draw_lines_for_locate_debug()
+        draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)

@@ -28,11 +28,16 @@ class Slack_pepe(Manager):
         self.r_keydown_flag = False
         self.f_keydown_flag = False
 
+        self.is_correct = None
+
         # 슬랙
         self.slack_good_kpi_image = pygame.transform.scale(pygame.image.load('images/slack_good_kpi.png'), (500, 300))
         self.slack_bad_kpi_image = pygame.transform.scale(pygame.image.load('images/slack_bad_kpi.png'), (500, 300))
         self.slack_pepe_good_image = pygame.transform.scale(pygame.image.load('images/slack_pepe_good.png'), (100, 100))
         self.slack_pepe_mad_image = pygame.transform.scale(pygame.image.load('images/slack_pepe_mad.png'), (100, 100))
+
+        self.correct_image = pygame.transform.scale(pygame.image.load('images/correct.png'), (200, 200))
+        self.wrong_image = pygame.transform.scale(pygame.image.load('images/wrong.png'), (200, 200))
 
         self.random_picked_number = randint(0, 1)
         self.picked_map = self.load_random_map(self.random_picked_number)
@@ -46,19 +51,26 @@ class Slack_pepe(Manager):
 
     # TODO : r, f에 따라 적절한 이미지를 삽입
     def update(self, event_key):
-        if event_key == K_r and self.r_keydown_flag:
-            self.surf = self.slack_pepe_good_image
-            self.r_keydown_flag = False
-            self.check()
-        elif event_key == K_f and self.f_keydown_flag:
-            self.surf = self.slack_pepe_mad_image
-            self.f_keydown_flag = False
-            self.check()
+        if self.is_correct is None:
+            if event_key == K_r and self.r_keydown_flag:
+                self.surf = self.slack_pepe_good_image
+                self.r_keydown_flag = False
+                self.check()
+            elif event_key == K_f and self.f_keydown_flag:
+                self.surf = self.slack_pepe_mad_image
+                self.f_keydown_flag = False
+                self.check()
 
     def render(self, SURFACE):
         # 슬랙 게임
         SURFACE.blit(self.picked_map, (700, 400))
         SURFACE.blit(self.surf, self.rect)
+        if self.is_correct is None:
+            pass # do nothing
+        elif self.is_correct:
+            SURFACE.blit(self.correct_image, (860, 440))
+        else:
+            SURFACE.blit(self.wrong_image, (860, 440))
 
     def load_random_map(self, random_pick):
         if random_pick == 0:
@@ -70,11 +82,15 @@ class Slack_pepe(Manager):
         if (self.random_picked_number == 0 and self.surf == self.slack_pepe_good_image) or \
                 (self.random_picked_number == 1 and self.surf == self.slack_pepe_mad_image):
             self.correct()
-            self.update_map()
+            self.is_correct = True
+            # self.update_map()
         else:
             self.wrong()
+            self.is_correct = False
         print(super().get_score())
 
     def update_map(self):
         self.random_picked_number = randint(0, 1)
+        self.surf = pygame.transform.scale(pygame.image.load('images/slack_pepe_calm.png'), (100, 100))
         self.picked_map = self.load_random_map(self.random_picked_number)
+        self.is_correct = None
