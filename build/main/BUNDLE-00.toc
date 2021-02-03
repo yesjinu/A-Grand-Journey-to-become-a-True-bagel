@@ -1,0 +1,1 @@
+([('main', '/Users/jinu/github/jinu/dist/main', 'EXECUTABLE')],)
