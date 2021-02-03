@@ -80,7 +80,7 @@ class Game(pygame.sprite.Sprite):
             game.update(event_key)
             # TODO: 랭크서버에 접속해서 기록을 남겨야 함.
 
-    def render_all(self, SURFACE):
+    def render_all(self, SURFACE, user_name):
         self.timer_in_bpm()
         self.is_music_ended()
         self.getting_harder_refresh_cycle()
@@ -96,13 +96,13 @@ class Game(pygame.sprite.Sprite):
 
         if Game.is_finished:
             SURFACE.blit(self.game_end_popup_image, (65, 0))
-            Game.textinput.update(pygame.event.get())
-            SURFACE.blit(Game.textinput.get_surface(), (600, 360))
             # Type your name:
             # Your score is 000
             # Press '0'to restart
-            Rank_server.update_rank(Game.textinput.get_text(), Game.score)
+            Rank_server.update_rank(user_name, Game.score)
+            print("your name : ", user_name)
             print("Your score :", Game.score)
+            # 잘 들어가는 것 확인, 이미지만 넣으면 됨.
             if Game.user_press_restart:
                 self.reset_class()
                 return True
@@ -125,8 +125,8 @@ class Game(pygame.sprite.Sprite):
 
     def is_music_ended(self):
         # print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
-        if time.time() - Game.music_start_time > il_jul:
-            # if time.time() - Game.music_start_time > 15:
+        # if time.time() - Game.music_start_time > il_jul:
+        if time.time() - Game.music_start_time > 5:
             Game.is_finished = True
 
     def get_now_time(self):

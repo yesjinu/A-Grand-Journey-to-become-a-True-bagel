@@ -13,6 +13,8 @@ from Pages.Front_page import Front_page
 from Pages.Ranking_page import Ranking_page
 from Pages.Tutorial_page import Tutorial_page
 
+import Input_name
+
 from Rank_server import (get_rank, update_rank)
 
 from pygame.locals import (
@@ -36,6 +38,7 @@ from pygame.locals import (
     K_9, # ranking
 
     K_SPACE,
+    K_RETURN,
     MOUSEBUTTONUP,
     MOUSEBUTTONDOWN
 )
@@ -63,6 +66,8 @@ BLACK = (0, 0, 0)
 allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 page_key_input = [K_0, K_7, K_8, K_9]
 
+text_input = Input_name.TextInput()
+
 
 def main():
     # print(get_rank())
@@ -78,7 +83,29 @@ def main():
 
     page_flag = K_0
     on_game = False
+
+    user_input_name = None
+
     while True:
+        while user_input_name is None:
+            SURFACE.fill((255, 255, 255))
+
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT:
+                    exit()
+                elif event.type == KEYDOWN and event.key == K_RETURN:
+                    user_input_name = text_input.get_text()
+                    break
+            text_input.update(events)
+            SURFACE.blit(text_input.get_surface(), (10, 10))
+
+            pygame.display.update()
+            FPSCLOCK.tick(30)
+
+        user_input_name = text_input.get_text()
+        # print(user_input_name)
+
         # input 받는 부분
         for event in pygame.event.get():
             if event.type == QUIT:
@@ -117,7 +144,7 @@ def main():
                 game_manager.start_games()
                 on_game = True
 
-            if game_manager.render_all(SURFACE):
+            if game_manager.render_all(SURFACE, user_input_name):
                 break
 
         # 랭킹 페이지

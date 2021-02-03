@@ -35,5 +35,5 @@ def update_rank(name, score):
     request = requests.Request('POST', URL_update_rank, files=files).prepare()
     session = requests.Session()
     res = session.send(request)
-    print("res", res)
+    # print("res", res)
 
