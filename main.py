@@ -13,7 +13,7 @@ from Pages.Front_page import Front_page
 from Pages.Ranking_page import Ranking_page
 from Pages.Tutorial_page import Tutorial_page
 
-from Rank import (get_rank, update_rank)
+from Rank_server import (get_rank, update_rank)
 
 from pygame.locals import (
     QUIT,
@@ -126,7 +126,7 @@ def main():
             pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
-        # draw_lines_for_locate_debug()
+        draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)

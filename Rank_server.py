@@ -5,20 +5,20 @@ URL_get_rank = 'http://54.180.140.113:10001/jinu/get_rank'
 
 def get_rank():
     response = requests.post(URL_get_rank).json()['data']
-    top_10_rank = []
-    if len(response) > 10:
-        for i in range(10):
+    top_5_rank = []
+    if len(response) > 5:
+        for i in range(5):
             player_name = response[i]['name']
             player_score = response[i]['score']
             temp_info = (player_name, player_score)
-            top_10_rank.append(temp_info)
+            top_5_rank.append(temp_info)
     else:
         for player in response:
             player_name = player['name']
             player_score = player['score']
             temp_info = (player_name, player_score)
-            top_10_rank.append(temp_info)
-    return top_10_rank
+            top_5_rank.append(temp_info)
+    return top_5_rank
 
 
 def update_rank(name, score):

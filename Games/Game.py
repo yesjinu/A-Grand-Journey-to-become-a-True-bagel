@@ -1,8 +1,11 @@
 import pygame
 import time
+import Input_name
+import Rank_server
 from pygame.locals import (
-    K_p,
+    K_0,
 )
+
 # default color
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
@@ -26,6 +29,8 @@ class Game(pygame.sprite.Sprite):
     music_start_time = None
     barometer = None
 
+    textinput = Input_name.TextInput(font_size=60)
+
     def __init__(self):
         super(Game, self).__init__()
         self.game_list = []
@@ -35,6 +40,8 @@ class Game(pygame.sprite.Sprite):
         Game.music_start_time = time.time()
 
         self.next_bpm = Game.music_start_time + ONE_BPM
+
+
 
 
     # 딱 한번만 호출
@@ -60,10 +67,10 @@ class Game(pygame.sprite.Sprite):
 
     def detect_key_all(self, event_key):
         if Game.is_ended or Game.is_finished:
-            Game.user_press_restart = True
-            # if event_key == K_p:
-            #     print("user press restart")
-            #     Game.user_press_restart = True
+            # Game.user_press_restart = True
+            if event_key == K_0:
+                print("user press restart")
+                Game.user_press_restart = True
         else:
             for game in self.game_list:
                 game.keydown_flagger(event_key)
@@ -87,6 +94,12 @@ class Game(pygame.sprite.Sprite):
 
         if Game.is_finished:
             SURFACE.blit(self.game_end_popup_image, (65, 0))
+            Game.textinput.update(pygame.event.get())
+            SURFACE.blit(Game.textinput.get_surface(), (600, 360))
+            # Type your name:
+            # Your score is 000
+            # Press '0'to restart
+            Rank_server.update_rank(Game.textinput.get_text(), Game.score)
             print("Your score :", Game.score)
             if Game.user_press_restart:
                 self.reset_class()
@@ -110,8 +123,9 @@ class Game(pygame.sprite.Sprite):
 
     def is_music_ended(self):
         # print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
-        if time.time() - Game.music_start_time > il_jul:
-            Game.is_finished = True
+        # if time.time() - Game.music_start_time > il_jul:
+        if time.time() - Game.music_start_time > 15:
+                Game.is_finished = True
 
     def get_now_time(self):
         return time.time()
@@ -139,6 +153,7 @@ class Game(pygame.sprite.Sprite):
         Game.is_finished = False
         Game.score = 10
         Game.user_press_restart = False
+        Game.textinput = Input_name.TextInput(font_size=60)
 
     def draw_alternate_grid_line(self, SURFACE):
         curr_time = time.time()
