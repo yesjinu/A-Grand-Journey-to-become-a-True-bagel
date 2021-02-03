@@ -100,11 +100,13 @@ def main():
         # 시작 페이지
         if page_flag == K_0:
             on_game = False
+            pygame.mixer.music.stop()
             front_page.render(SURFACE)
 
         # 튜토리얼 페이지
         elif page_flag == K_1:
             on_game = False
+            pygame.mixer.music.stop()
             tutorial_page.render(SURFACE)
 
         # 게임 페이지
@@ -121,6 +123,7 @@ def main():
         # 랭킹 페이지
         elif page_flag == K_3:
             on_game = False
+            pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
         # draw_lines_for_locate_debug()

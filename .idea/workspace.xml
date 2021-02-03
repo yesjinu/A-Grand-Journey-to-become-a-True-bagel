@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2aedf8d4-2c03-44c7-bb02-6b6573e01dfd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Games/Clicking_Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Games/Clicking_Game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Games/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Games/Game.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -202,6 +203,6 @@
     <SUITE FILE_PATH="coverage/jinu$Manager.coverage" NAME="Manager Coverage Results" MODIFIED="1612245525685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
     <SUITE FILE_PATH="coverage/jinu$Click_rhythm.coverage" NAME="Click_rhythm Coverage Results" MODIFIED="1612228332666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
     <SUITE FILE_PATH="coverage/jinu$Table_sitting.coverage" NAME="Table_sitting Coverage Results" MODIFIED="1612251007840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
-    <SUITE FILE_PATH="coverage/jinu$main.coverage" NAME="main Coverage Results" MODIFIED="1612360846191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/jinu$main.coverage" NAME="main Coverage Results" MODIFIED="1612362576471" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

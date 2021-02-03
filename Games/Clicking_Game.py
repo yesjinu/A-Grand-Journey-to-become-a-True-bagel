@@ -23,8 +23,8 @@ class Click_game(Game):
         self.rect = Rect(590, 310, 100, 100)
 
         self.mouse_down_flag = False
-        self.previous_time = Game.game_start_time + ONE_BPM * 4
-        self.current_time = Game.game_start_time + ONE_BPM * 4
+        self.previous_time = Game.music_start_time + ONE_BPM * 4
+        self.current_time = Game.music_start_time + ONE_BPM * 4
 
     # Move the sprite based on user key presses
     def click_down_flagger(self):
@@ -44,8 +44,8 @@ class Click_game(Game):
 
 
     def render(self, SURFACE):
-        SURFACE.blit(self.surf, self.rect)
-
+        # SURFACE.blit(self.surf, self.rect)
+        pass
     def check(self):
         print(self.current_time)
         print(self.get_diff())

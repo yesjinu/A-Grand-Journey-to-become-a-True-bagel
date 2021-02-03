@@ -9,7 +9,7 @@ BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GRAY = (229, 229, 229)
 
-REFRESH_CYCLE = 0.44444444 * 8
+REFRESH_CYCLE = 60 * 8 / 135
 
 
 # 왼쪽
@@ -19,7 +19,7 @@ class Game(pygame.sprite.Sprite):
     is_ended = False
     user_press_restart = False
 
-    game_start_time = None
+    music_start_time = None
     barometer = None
 
     def __init__(self):
@@ -27,7 +27,25 @@ class Game(pygame.sprite.Sprite):
         self.game_list = []
         self.game_over_image = pygame.image.load('images/game_over.png')
 
-        Game.game_start_time = time.time()
+        Game.music_start_time = time.time()
+
+    # 딱 한번만 호출
+    def start_games(self):
+        # 시작 시간 기록
+
+        self.reset_class()
+        # 음악 플레이 시작
+        # self.game_play_music.play()
+        # pygame.mixer.music.load('sounds/bad_guy.mp3') # TODO: 게임 전환 싱크 더 잘 맞추기
+        # pygame.mixer.music.load('sounds/trimmed_music.mp3')
+        pygame.mixer.music.load('sounds/bad_guy_sample.mp3')
+        pygame.mixer.music.play()
+        Game.music_start_time = time.time()
+        Game.barometer = Game.music_start_time
+
+        print(Game.music_start_time)
+        print(Game.barometer)
+
 
     def add_to_game_list(self, new_game):
         self.game_list.append(new_game)
@@ -43,8 +61,8 @@ class Game(pygame.sprite.Sprite):
         for game in self.game_list:
             game.update(event_key)
 
-        print(time.time(), Game.game_start_time, time.time() - Game.game_start_time)
-        if time.time() - Game.game_start_time > 155:
+        print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
+        if time.time() - Game.music_start_time > 155:
             Game.is_ended = True
             # TODO: 랭크서버에 접속해서 기록을 남겨야 함.
 
@@ -60,7 +78,6 @@ class Game(pygame.sprite.Sprite):
             SURFACE.blit(self.score_message, (640, 720))
 
         if Game.is_ended:
-            print("score:", Game.score)
             SURFACE.blit(self.game_over_image, (40, 0))
             if Game.user_press_restart:
                 self.reset_class()
@@ -69,9 +86,11 @@ class Game(pygame.sprite.Sprite):
         # 전체적으로 남은 시간 표시해줘야함
 
     def timer_in_bpm(self):
-        if self.get_now_time() - self.barometer > REFRESH_CYCLE:
+        # print(REFRESH_CYCLE)
+        now_time = time.time()
+        if now_time - Game.barometer > REFRESH_CYCLE:
             self.refresh_games()
-            self.barometer = self.get_now_time()
+            Game.barometer = now_time
 
     def get_now_time(self):
         return time.time()
@@ -91,22 +110,6 @@ class Game(pygame.sprite.Sprite):
 
     def get_score(self):
         return self.score
-
-
-    # 딱 한번만 호출
-    def start_games(self):
-        # 시작 시간 기록
-        self.reset_class()
-        Game.game_start_time = time.time()
-        Game.barometer = Game.game_start_time
-
-        # 음악 플레이 시작
-        # self.game_play_music.play()
-        pygame.mixer.music.load('sounds/bad_guy.mp3') # TODO: 게임 전환 싱크 더 잘 맞추기
-        # pygame.mixer.music.load('sounds/bad_guy_sample.mp3')
-        # pygame.mixer.music.load('sounds/trimmed_music.mp3')
-        pygame.mixer.music.play()
-
 
     def refresh_games(self):
         for game in self.game_list:
