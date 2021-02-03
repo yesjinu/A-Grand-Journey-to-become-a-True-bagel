@@ -30,6 +30,7 @@ class Click_game(Game):
 
     # Move the sprite based on user key presses
     def click_down_flagger(self):
+
         self.mouse_down_flag = True
         self.previous_time = self.current_time
         self.current_time = time.time()
@@ -51,7 +52,8 @@ class Click_game(Game):
             self.check()
 
     def render(self, SURFACE):
-        self.purser_every_bpm()
+        if not Game.is_finished and not Game.is_ended:
+            self.purser_every_bpm()
         # SURFACE.blit(self.surf, self.rect)
         pass
 

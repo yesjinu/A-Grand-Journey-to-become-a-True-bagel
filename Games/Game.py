@@ -10,6 +10,7 @@ RED = (255, 0, 0)
 GRAY = (229, 229, 229)
 
 REFRESH_CYCLE = 60 * 8 / 135
+il_jul = 74
 
 
 # 왼쪽
@@ -17,6 +18,7 @@ REFRESH_CYCLE = 60 * 8 / 135
 class Game(pygame.sprite.Sprite):
     score = 10
     is_ended = False
+    is_finished = False
     user_press_restart = False
 
     music_start_time = None
@@ -26,6 +28,7 @@ class Game(pygame.sprite.Sprite):
         super(Game, self).__init__()
         self.game_list = []
         self.game_over_image = pygame.image.load('images/game_over.png')
+        self.game_end_popup_image = pygame.image.load('images/game_end_popup.png')
 
         Game.music_start_time = time.time()
 
@@ -51,37 +54,44 @@ class Game(pygame.sprite.Sprite):
         self.game_list.append(new_game)
 
     def detect_key_all(self, event_key):
-        if Game.is_ended and event_key == K_p:
-            print("user press restart")
-            Game.user_press_restart = True
-        for game in self.game_list:
-            game.keydown_flagger(event_key)
+        if Game.is_ended or Game.is_finished:
+            if event_key == K_p:
+                print("user press restart")
+                Game.user_press_restart = True
+        else:
+            for game in self.game_list:
+                game.keydown_flagger(event_key)
 
     def update_all(self, event_key):
         for game in self.game_list:
             game.update(event_key)
-
-        print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
-        if time.time() - Game.music_start_time > 155:
-            Game.is_ended = True
             # TODO: 랭크서버에 접속해서 기록을 남겨야 함.
 
     def render_all(self, SURFACE):
         self.timer_in_bpm()
+        self.is_music_ended()
 
         if not Game.is_ended:
             SURFACE.fill(GRAY)
             self.draw_grid_line(SURFACE)
             for game in self.game_list:
                 game.render(SURFACE)
-            self.score_message = pygame.font.SysFont(None, 60).render(f'Score : {self.get_score()}', False, (255, 255, 255))
-            SURFACE.blit(self.score_message, (640, 720))
+            self.score_message = pygame.font.SysFont(None, 60).render(f'Score : {self.get_score()}', False, (0, 0, 0))
+            SURFACE.blit(self.score_message, (1000, 750))
+
+        if Game.is_finished:
+            SURFACE.blit(self.game_end_popup_image, (65, 0))
+            print("Your score :", Game.score)
+            if Game.user_press_restart:
+                self.reset_class()
+                return True
 
         if Game.is_ended:
             SURFACE.blit(self.game_over_image, (40, 0))
             if Game.user_press_restart:
                 self.reset_class()
                 return True
+
         return False
         # 전체적으로 남은 시간 표시해줘야함
 
@@ -91,6 +101,11 @@ class Game(pygame.sprite.Sprite):
         if now_time - Game.barometer > REFRESH_CYCLE:
             self.refresh_games()
             Game.barometer = now_time
+
+    def is_music_ended(self):
+        # print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
+        if time.time() - Game.music_start_time > il_jul:
+            Game.is_finished = True
 
     def get_now_time(self):
         return time.time()
@@ -120,5 +135,6 @@ class Game(pygame.sprite.Sprite):
 
     def reset_class(self):
         Game.is_ended = False
+        Game.is_finished = False
         Game.score = 10
         Game.user_press_restart = False
