@@ -14,8 +14,7 @@ GRAY = (229, 229, 229)
 GLOW_RED = (255, 204, 204)
 
 ONE_BPM = 60 / 135
-REFRESH_CYCLE = 60 * 8 / 135
-il_jul = 74
+il_jul = 76
 
 
 # 왼쪽
@@ -25,6 +24,7 @@ class Game(pygame.sprite.Sprite):
     is_ended = False
     is_finished = False
     user_press_restart = False
+    REFRESH_CYCLE = 60 * 8 / 135
 
     music_start_time = None
     barometer = None
@@ -83,6 +83,8 @@ class Game(pygame.sprite.Sprite):
     def render_all(self, SURFACE):
         self.timer_in_bpm()
         self.is_music_ended()
+        self.getting_harder_refresh_cycle()
+        print(Game.REFRESH_CYCLE)
 
         if not Game.is_ended:
             SURFACE.fill(GRAY)
@@ -117,15 +119,15 @@ class Game(pygame.sprite.Sprite):
     def timer_in_bpm(self):
         # print(REFRESH_CYCLE)
         now_time = time.time()
-        if now_time - Game.barometer > REFRESH_CYCLE:
+        if now_time - Game.barometer > Game.REFRESH_CYCLE:
             self.refresh_games()
             Game.barometer = now_time
 
     def is_music_ended(self):
         # print(time.time(), Game.music_start_time, time.time() - Game.music_start_time)
-        # if time.time() - Game.music_start_time > il_jul:
-        if time.time() - Game.music_start_time > 15:
-                Game.is_finished = True
+        if time.time() - Game.music_start_time > il_jul:
+            # if time.time() - Game.music_start_time > 15:
+            Game.is_finished = True
 
     def get_now_time(self):
         return time.time()
@@ -154,6 +156,17 @@ class Game(pygame.sprite.Sprite):
         Game.score = 10
         Game.user_press_restart = False
         Game.textinput = Input_name.TextInput(font_size=60)
+
+    def getting_harder_refresh_cycle(self):
+        if time.time() < Game.music_start_time + 42:
+            pass
+        elif time.time() < Game.music_start_time + 60:
+            Game.REFRESH_CYCLE = 60 * 4 / 135
+        else:
+            Game.REFRESH_CYCLE = 60 * 2 / 135
+
+
+
 
     def draw_alternate_grid_line(self, SURFACE):
         curr_time = time.time()

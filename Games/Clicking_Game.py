@@ -49,7 +49,7 @@ class Click_game(Game):
 
     def purser_every_bpm(self):
         if time.time() - self.previous_time > ONE_BPM:
-            print("tick")
+            # print("tick")
             self.check()
             # return True
         # return False
@@ -64,7 +64,7 @@ class Click_game(Game):
 
     def check(self):
         # print(self.current_time)
-        print(self.get_diff())
+        # print(self.get_diff())
         if self.get_diff() < 0.08:
             self.correct()
         else:

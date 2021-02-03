@@ -50,3 +50,5 @@ class Ranking_page():
         SURFACE.blit(self.score_3, (750, 510))
         SURFACE.blit(self.score_4, (750, 600))
         SURFACE.blit(self.score_5, (750, 690))
+
+        print(self.rankers_list)
