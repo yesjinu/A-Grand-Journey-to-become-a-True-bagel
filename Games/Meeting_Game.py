@@ -5,6 +5,7 @@ from pygame.locals import (
     Rect,
     K_SPACE
 )
+import time
 
 # default color
 WHITE = (255, 255, 255)
@@ -22,7 +23,7 @@ class Meeting_beer(Manager):
         self.rect = Rect(50, 510, 103, 160)
 
         self.space_keydown_flag = False
-        self.toggle = True
+        self.drink = False
 
         # 모니터
         self.monitor_black_image = pygame.transform.scale(pygame.image.load('images/monitor.png'), (384, 300))
@@ -30,7 +31,7 @@ class Meeting_beer(Manager):
 
         self.monitor_front_both = pygame.transform.scale(pygame.image.load('images/monitor_front_both.png'), (340, 215))
         self.monitor_front_one1 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
-        self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_12.png'), (340, 215))
+        self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
         self.monitor_side_both = pygame.transform.scale(pygame.image.load('images/monitor_side_both.png'), (340, 215))
 
         self.random_picked_number = randint(0, 3)
@@ -40,16 +41,14 @@ class Meeting_beer(Manager):
     # Move the sprite based on user key presses
     def keydown_flagger(self, event_key):
         if event_key == K_SPACE:
+            self.surf = pygame.image.load('images/monitor_beer_bagel.png')
             self.space_keydown_flag = True
+            self.check() # 시간에 따라 점수를 주는 체계 필요함.
 
     def update(self, event_key):
         if event_key == K_SPACE and self.space_keydown_flag:
-            if self.toggle:
-                self.surf = pygame.image.load('images/monitor_beer_bagel.png')
-                self.toggle = False
-            else:
-                self.surf = pygame.image.load('images/monitor_idle_bagel.png')
-                self.toggle = True
+            self.surf = pygame.image.load('images/monitor_idle_bagel.png')
+            # self.drink = True
             self.space_keydown_flag = False
 
     def render(self, SURFACE):
@@ -59,15 +58,23 @@ class Meeting_beer(Manager):
         SURFACE.blit(self.surf, self.rect)
 
     def load_random_map(self, random_pick):
-        if random_pick == 1:
+        if random_pick == 0:
             return self.monitor_front_both
-        elif random_pick == 2:
+        elif random_pick == 1:
             return self.monitor_front_one1
-        elif random_pick == 3:
+        elif random_pick == 2:
             return self.monitor_front_one2
         else:
             return self.monitor_side_both
 
-    # def check(self):
+    def check(self):
+        if self.random_picked_number == 3 and self.drink:
+            self.correct()
+        else:
+            self.wrong()
+
+
+    def update_map(self):
+        pass
 
 

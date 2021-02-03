@@ -84,6 +84,11 @@ class Calendar(Manager):
     def check(self):
         if self.pos_idx == self.random_picked_number:
             self.correct()
+            self.update_map()
         else:
             self.wrong()
         print(super().get_score())
+
+    def update_map(self):
+        self.random_picked_number = randint(0, 2)
+        self.picked_map = self.load_random_map(self.random_picked_number)

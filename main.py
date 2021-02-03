@@ -6,10 +6,13 @@ from Games.Meeting_Game import Meeting_beer
 from Games.Slack_Game import Slack_pepe
 from Games.Clicking_Game import Click_game
 from Games.Manager import Manager
-from Front_page import Front_page
+
+from Pages.Front_page import Front_page
+from Pages.Ranking_page import Ranking_page
+from Pages.Tutorial_page import Tutorial_page
+
 from pygame.locals import (
     QUIT,
-    Rect,
     KEYDOWN,
     KEYUP,
     K_a,
@@ -21,6 +24,10 @@ from pygame.locals import (
     K_r,
     K_f,
     K_p,
+    K_0, # front page
+    K_1, # tutorial
+    K_2, # start
+    K_3, # ranking
     K_SPACE,
     MOUSEBUTTONUP,
     MOUSEBUTTONDOWN
@@ -46,13 +53,10 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 allowed_key_input = [K_SPACE, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
+page_key_input = [K_0, K_1, K_2, K_3]
 
 
-# 이 게임은 하드코딩으로 제작되었습니다. 윈도우 사이즈 변경이 안 되는 점 이해해주시기 바랍니다.
 def main():
-    # 메시지 렌더링 초기화
-
-    on_game = False
 
     # pygame은 루프문을 계속 돌면서 event(인풋)을 감지해 새로운 화면을 그린다
     game_manager = Manager()
@@ -60,22 +64,23 @@ def main():
     click_game = game_manager.game_list[-1]
 
     front_page = Front_page()
+    tutorial_page = Tutorial_page()
+    ranking_page = Ranking_page()
 
 
-
+    page_flag = K_0
+    on_game = False
     while True:
-        SURFACE.fill(WHITE)
-
         # input 받는 부분
         for event in pygame.event.get():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
             elif event.type == KEYDOWN:
-                if event.key == K_p:
-                    on_game = True
-                elif event.key in allowed_key_input:
+                if on_game and (event.key in allowed_key_input):
                     game_manager.detect_key_all(event.key)
+                if event.key in page_key_input:
+                    page_flag = event.key
             elif event.type == KEYUP:
                 if event.key in allowed_key_input:
                     game_manager.update_all(event.key)
@@ -84,12 +89,25 @@ def main():
             elif event.type == MOUSEBUTTONUP:
                 click_game.update(None)
 
-        if not on_game: # 시작 페이지
+        # 시작 페이지
+        if page_flag == K_0:
+            on_game = False
             front_page.render(SURFACE)
 
-        if on_game:
+        # 튜토리얼 페이지
+        elif page_flag == K_1:
+            on_game = False
+            tutorial_page.render(SURFACE)
+
+        # 게임 페이지
+        elif page_flag == K_2:
+            on_game = True
             game_manager.render_all(SURFACE)
 
+        # 랭킹 페이지
+        elif page_flag == K_3:
+            on_game = False
+            ranking_page.render(SURFACE)
 
         # draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
@@ -97,27 +115,17 @@ def main():
         FPSCLOCK.tick(30)
 
 
-def align_message_center_of_screen(message):
-    return ((WINDOW_WIDTH - message.get_width()) / 2, (WINDOW_HEIGHT - message.get_height()) / 2)
-
-
-def show_bagel_on_screen(bagel):
-    SURFACE.blit(bagel.surf, bagel.rect)
-
-def show_message_on_screen_center(message):
-    SURFACE.blit(message, align_message_center_of_screen(message))
-
 def draw_lines_for_locate_debug():
     for i in range(10, 1280, 10):
         if (i % 100 == 0):
-            pygame.draw.line(SURFACE, (255, 0, 0), (i, 0), (i, 720))
+            pygame.draw.line(SURFACE, (255, 0, 0), (i, 0), (i, 820))
             continue
         if (i % 50 == 0):
-            pygame.draw.line(SURFACE, BLACK, (i, 0), (i, 720))
+            pygame.draw.line(SURFACE, BLACK, (i, 0), (i, 820))
             continue
-        pygame.draw.line(SURFACE, (220,220,220), (i, 0), (i, 720))
+        pygame.draw.line(SURFACE, (220,220,220), (i, 0), (i, 820))
 
-    for i in range(10, 720, 10):
+    for i in range(10, 820, 10):
         if (i % 100 == 0):
             pygame.draw.line(SURFACE, (255, 0, 0), (0, i), (1280, i))
             continue
@@ -138,6 +146,25 @@ def register_all_games(game_manager):
     game_manager.add_to_game_list(meeting_game)
     game_manager.add_to_game_list(slack_game)
     game_manager.add_to_game_list(click_game)
+
+def get_keyboard_input_123():
+    for event in pygame.event.get():
+        if event.type == KEYDOWN and event.key in page_key_input:
+            return event.key
+
+def get_keyboard_input_game(game_manager):
+    for event in pygame.event.get():
+        if event.type == KEYDOWN and event.key in allowed_key_input:
+            game_manager.detect_key_all(event.key)
+        elif event.type == KEYUP and event.key in allowed_key_input:
+            game_manager.update_all(event.key)
+
+def get_mouseclick_input_game(click_game):
+    for event in pygame.event.get():
+        if event.type == MOUSEBUTTONDOWN:
+            click_game.click_down_flagger()
+        elif event.type == MOUSEBUTTONUP:
+            click_game.update(None)
 
 def log_mouse_position():
     x, y = pygame.mouse.get_pos()

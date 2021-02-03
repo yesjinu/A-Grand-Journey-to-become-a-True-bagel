@@ -20,6 +20,7 @@ class Click_game(Manager):
         self.surf = pygame.transform.scale(pygame.image.load('images/click_square.png'), (100, 100))
         self.rect = Rect(590, 310, 100, 100)
 
+
         self.mouse_down_flag = False
 
     # Move the sprite based on user key presses
@@ -38,3 +39,6 @@ class Click_game(Manager):
 
     def render(self, SURFACE):
         SURFACE.blit(self.surf, self.rect)
+
+    def update_map(self):
+        pass

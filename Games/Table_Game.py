@@ -81,9 +81,16 @@ class Table_sitting(Manager):
     def check(self):
         if self.pos_idx == self.random_picked_number:
             self.correct()
+            self.update_map()
         else:
             self.wrong()
-        print(self.pos_idx, self.random_picked_number, super().get_score())
+        print(super().get_score())
+        # print(self.pos_idx, self.random_picked_number, super().get_score())
+
+    def update_map(self):
+        self.random_picked_number = randint(1, 4)
+        self.picked_map = self.load_random_map(self.random_picked_number)
+
 
 
 

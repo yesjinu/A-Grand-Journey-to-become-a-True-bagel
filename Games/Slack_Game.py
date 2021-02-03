@@ -70,6 +70,11 @@ class Slack_pepe(Manager):
         if (self.random_picked_number == 0 and self.surf == self.slack_pepe_good_image) or \
                 (self.random_picked_number == 1 and self.surf == self.slack_pepe_mad_image):
             self.correct()
+            self.update_map()
         else:
             self.wrong()
         print(super().get_score())
+
+    def update_map(self):
+        self.random_picked_number = randint(0, 1)
+        self.picked_map = self.load_random_map(self.random_picked_number)
