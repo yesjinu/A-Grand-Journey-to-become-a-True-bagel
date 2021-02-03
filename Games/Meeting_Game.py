@@ -95,7 +95,11 @@ class Meeting_beer(Game):
 
     def update_map(self):
         self.update(None)
-        self.random_picked_number = randint(0, 3)
+        while True:
+            temp = randint(0, 3)
+            if self.random_picked_number != temp:
+                self.random_picked_number = randint(0, 3)
+                break
         self.picked_map = self.load_random_map(self.random_picked_number)
 
 

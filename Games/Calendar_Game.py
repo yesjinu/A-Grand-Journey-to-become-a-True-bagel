@@ -104,6 +104,10 @@ class Calendar(Game):
         print(super().get_score())
 
     def update_map(self):
-        self.random_picked_number = randint(0, 2)
+        while True:
+            temp = randint(0, 2)
+            if self.random_picked_number != temp:
+                self.random_picked_number = randint(0, 2)
+                break
         self.picked_map = self.load_random_map(self.random_picked_number)
         self.is_correct = None

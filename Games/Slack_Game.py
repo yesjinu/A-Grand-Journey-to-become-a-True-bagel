@@ -90,7 +90,11 @@ class Slack_pepe(Game):
         print(super().get_score())
 
     def update_map(self):
-        self.random_picked_number = randint(0, 1)
+        while True:
+            temp = randint(0, 1)
+            if self.random_picked_number != temp:
+                self.random_picked_number = randint(0, 1)
+                break
         self.surf = pygame.transform.scale(pygame.image.load('images/slack_pepe_calm.png'), (100, 100))
         self.picked_map = self.load_random_map(self.random_picked_number)
         self.is_correct = None

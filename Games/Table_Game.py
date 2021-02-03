@@ -101,7 +101,11 @@ class Table_sitting(Game):
         # print(self.pos_idx, self.random_picked_number, super().get_score())
 
     def update_map(self):
-        self.random_picked_number = randint(1, 4)
+        while True:
+            temp = randint(1, 4)
+            if self.random_picked_number != temp:
+                self.random_picked_number = randint(1, 4)
+                break
         self.picked_map = self.load_random_map(self.random_picked_number)
         self.is_correct = None
 
