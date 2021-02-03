@@ -158,7 +158,7 @@ class Game(pygame.sprite.Sprite):
         Game.textinput = Input_name.TextInput(font_size=60)
 
     def getting_harder_refresh_cycle(self):
-        if time.time() < Game.music_start_time + 42:
+        if time.time() < Game.music_start_time + 43:
             pass
         elif time.time() < Game.music_start_time + 60:
             Game.REFRESH_CYCLE = 60 * 4 / 135

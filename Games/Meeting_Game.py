@@ -30,8 +30,8 @@ class Meeting_beer(Game):
         # self.monitor_beer_bagel_image = pygame.image.load('images/monitor_beer_bagel.png')
 
         self.monitor_front_both = pygame.transform.scale(pygame.image.load('images/monitor_front_both.png'), (340, 215))
-        self.monitor_front_one1 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
-        self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
+        self.monitor_front_one = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
+        # self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
         self.monitor_side_both = pygame.transform.scale(pygame.image.load('images/monitor_side_both.png'), (340, 215))
 
         self.random_picked_number = randint(0, 3)
@@ -69,10 +69,8 @@ class Meeting_beer(Game):
         if random_pick == 0:
             return self.monitor_front_both
         elif random_pick == 1:
-            return self.monitor_front_one1
+            return self.monitor_front_one
         elif random_pick == 2:
-            return self.monitor_front_one2
-        else:
             return self.monitor_side_both
 
     def check(self):
@@ -82,7 +80,7 @@ class Meeting_beer(Game):
             self.start_time = time.time()
 
         print(self.elapsed_time)
-        if self.random_picked_number == 3:
+        if self.random_picked_number == 2:
             correct_time = int(self.elapsed_time)
             for i in range(correct_time):
                 self.correct()
@@ -96,9 +94,9 @@ class Meeting_beer(Game):
     def update_map(self):
         self.update(None)
         while True:
-            temp = randint(0, 3)
+            temp = randint(0, 2)
             if self.random_picked_number != temp:
-                self.random_picked_number = randint(0, 3)
+                self.random_picked_number = randint(0, 2)
                 break
         self.picked_map = self.load_random_map(self.random_picked_number)
 
