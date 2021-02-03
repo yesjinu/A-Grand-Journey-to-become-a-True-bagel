@@ -11,6 +11,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 
+
 ONE_BPM = 0.44444444
 
 # 왼쪽
@@ -50,10 +51,13 @@ class Click_game(Game):
         if time.time() - self.previous_time > ONE_BPM:
             print("tick")
             self.check()
+            # return True
+        # return False
 
     def render(self, SURFACE):
         if not Game.is_finished and not Game.is_ended:
             self.purser_every_bpm()
+            # self.draw_grid_line(SURFACE)
         # SURFACE.blit(self.surf, self.rect)
         pass
 
@@ -81,3 +85,7 @@ class Click_game(Game):
         Game.score -= 1
         if Game.score <= 0:
             self.end_game()
+
+    # def draw_grid_line(self, SURFACE):
+    #     pygame.draw.line(SURFACE, BRIGHT_RED, (0, 360), (1280, 360), 4)  # 중간 가로줄
+    #     pygame.draw.line(SURFACE, BRIGHT_RED, (640, 0), (640, 720), 4)  # 중간 세로줄

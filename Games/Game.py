@@ -8,7 +8,9 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 RED = (255, 0, 0)
 GRAY = (229, 229, 229)
+GLOW_RED = (255, 204, 204)
 
+ONE_BPM = 60 / 135
 REFRESH_CYCLE = 60 * 8 / 135
 il_jul = 74
 
@@ -31,6 +33,9 @@ class Game(pygame.sprite.Sprite):
         self.game_end_popup_image = pygame.image.load('images/game_end_popup.png')
 
         Game.music_start_time = time.time()
+
+        self.next_bpm = Game.music_start_time + ONE_BPM
+
 
     # 딱 한번만 호출
     def start_games(self):
@@ -73,7 +78,7 @@ class Game(pygame.sprite.Sprite):
 
         if not Game.is_ended:
             SURFACE.fill(GRAY)
-            self.draw_grid_line(SURFACE)
+            self.draw_alternate_grid_line(SURFACE)
             for game in self.game_list:
                 game.render(SURFACE)
             self.score_message = pygame.font.SysFont(None, 60).render(f'Score : {self.get_score()}', False, (0, 0, 0))
@@ -110,11 +115,6 @@ class Game(pygame.sprite.Sprite):
     def get_now_time(self):
         return time.time()
 
-    def draw_grid_line(self, SURFACE):
-        pygame.draw.line(SURFACE, BLACK, (0, 360), (1280, 360), 4) # 중간 가로줄
-        pygame.draw.line(SURFACE, BLACK, (640, 0), (640, 720), 4)  # 중간 세로줄
-        pygame.draw.line(SURFACE, BLACK, (0, 720), (1280, 720), 4) # 아래 가로줄
-
     def correct(self):
         Game.score += 10
 
@@ -138,3 +138,21 @@ class Game(pygame.sprite.Sprite):
         Game.is_finished = False
         Game.score = 10
         Game.user_press_restart = False
+
+    def draw_alternate_grid_line(self, SURFACE):
+        curr_time = time.time()
+        if self.next_bpm < curr_time:
+            self.draw_glow_grid_line(SURFACE)
+            self.next_bpm = curr_time + ONE_BPM
+        else:
+            self.draw_black_grid_line(SURFACE)
+
+    def draw_black_grid_line(self, SURFACE):
+        pygame.draw.line(SURFACE, BLACK, (0, 360), (1280, 360), 4) # 중간 가로줄
+        pygame.draw.line(SURFACE, BLACK, (640, 0), (640, 720), 4)  # 중간 세로줄
+        pygame.draw.line(SURFACE, BLACK, (0, 720), (1280, 720), 4) # 아래 가로줄
+
+    def draw_glow_grid_line(self, SURFACE):
+        pygame.draw.line(SURFACE, GLOW_RED, (0, 360), (1280, 360), 4)  # 중간 가로줄
+        pygame.draw.line(SURFACE, GLOW_RED, (640, 0), (640, 720), 4)  # 중간 세로줄
+        pygame.draw.line(SURFACE, BLACK, (0, 720), (1280, 720), 4) # 아래 가로줄
