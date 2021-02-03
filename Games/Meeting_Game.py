@@ -37,16 +37,24 @@ class Meeting_beer(Manager):
         self.random_picked_number = randint(0, 3)
         self.picked_map = self.load_random_map(self.random_picked_number)
 
+        # drink한 시간
+        self.start_time = None
+        self.end_time = None
+        self.elapsed_time = 0
+
 
     # Move the sprite based on user key presses
     def keydown_flagger(self, event_key):
         if event_key == K_SPACE:
+            if self.start_time is None:
+                self.start_time = time.time()
             self.surf = pygame.image.load('images/monitor_beer_bagel.png')
             self.space_keydown_flag = True
-            self.check() # 시간에 따라 점수를 주는 체계 필요함.
+            # self.check() # 시간에 따라 점수를 주는 체계 필요함.
 
     def update(self, event_key):
         if event_key == K_SPACE and self.space_keydown_flag:
+            self.check()
             self.surf = pygame.image.load('images/monitor_idle_bagel.png')
             # self.drink = True
             self.space_keydown_flag = False
@@ -68,14 +76,25 @@ class Meeting_beer(Manager):
             return self.monitor_side_both
 
     def check(self):
-        if self.random_picked_number == 3 and self.drink:
-            self.correct()
-            # self.update_map()
-        else:
-            self.wrong()
+        self.elapsed_time += (time.time() - self.start_time)
+        self.start_time = None
+        if self.space_keydown_flag:
+            self.start_time = time.time()
 
+        print(self.elapsed_time)
+        if self.random_picked_number == 3:
+            correct_time = int(self.elapsed_time)
+            for i in range(correct_time):
+                self.correct()
+            self.elapsed_time = 0
+        else:
+            wrong_time = int(self.elapsed_time)
+            for i in range(wrong_time):
+                self.wrong()
+            self.elapsed_time = 0
 
     def update_map(self):
+        self.update(None)
         self.random_picked_number = randint(0, 3)
         self.picked_map = self.load_random_map(self.random_picked_number)
 

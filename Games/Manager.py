@@ -42,7 +42,7 @@ class Manager(pygame.sprite.Sprite):
         self.score_message = FONT_60.render(f'Score : {self.get_score()}', False, (255, 255, 255))
         SURFACE.blit(self.score_message, (640, 720))
 
-        print(self.get_score())
+        # print(self.get_score())
         # 일정 시간이 지날 때마다 모니터 게임을 리프레시 해줘야 함
 
         # 전체적으로 남은 시간 표시해줘야함
