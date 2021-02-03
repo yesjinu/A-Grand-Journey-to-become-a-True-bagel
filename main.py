@@ -154,7 +154,7 @@ def main():
             pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
-        draw_lines_for_locate_debug()
+        # draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)
@@ -183,6 +183,8 @@ def click_button(mouse_pos, page_flag):
     elif page_flag == K_8:
         if 20 <= x_pos <= 80 and 740 <= y_pos <= 800:
             return K_0
+        else:
+            return K_8
 
 
 
