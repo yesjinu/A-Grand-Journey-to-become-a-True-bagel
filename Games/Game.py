@@ -40,8 +40,8 @@ class Game(pygame.sprite.Sprite):
 
 
         Game.music_start_time = time.time()
-
         self.next_bpm = Game.music_start_time + ONE_BPM
+        self.stamp_sound = pygame.mixer.Sound('sounds/stamp_sound.wav')
 
 
 
@@ -139,11 +139,13 @@ class Game(pygame.sprite.Sprite):
 
     def correct(self):
         Game.score += 10
+        self.stamp_sound.play()
 
     def wrong(self):
         Game.score -= 10
+        self.stamp_sound.play()
         if Game.score <= 0:
-            self.end_game()
+            self.end_game() # 게임 끝나는 용 사운드 추가할 것!!!!!!!!!!!
 
     def get_score(self):
         return self.score

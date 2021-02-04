@@ -32,6 +32,8 @@ class Meeting_beer(Game):
         self.monitor_front_one = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
         self.monitor_side_both = pygame.transform.scale(pygame.image.load('images/monitor_side_both.png'), (340, 215))
 
+        self.beer_drinking_sound = pygame.mixer.Sound('sounds/drink_beer.wav')
+
         self.random_picked_number = randint(0, 2)
         self.picked_map = self.load_random_map(self.random_picked_number)
 
@@ -47,6 +49,7 @@ class Meeting_beer(Game):
             if self.start_time is None:
                 self.start_time = time.time()
             self.surf = pygame.image.load('images/monitor_beer_bagel.png')
+            self.beer_drinking_sound.play()
             self.space_keydown_flag = True
             # self.check() # 시간에 따라 점수를 주는 체계 필요함.
 

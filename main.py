@@ -86,8 +86,8 @@ def main():
 
     user_input_name = None
     pygame.mixer.music.load("sounds/main_page_bgm.wav")
-    bgm_flag = False
     pygame.mixer.music.play()
+
     while True:
         # ranking_page_sound.play()
         while user_input_name is None:
