@@ -57,6 +57,8 @@ class Game(pygame.sprite.Sprite):
         # pygame.mixer.music.load('sounds/trimmed_music.mp3')
         pygame.mixer.music.load('sounds/bad_guy_sample.mp3')
         pygame.mixer.music.play()
+        # bad_guy = pygame.mixer.Sound('sounds/bad_guy_sample.mp3')
+        # bad_guy.play()
         Game.music_start_time = time.time()
         Game.barometer = Game.music_start_time
 

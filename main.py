@@ -85,8 +85,11 @@ def main():
     on_game = False
 
     user_input_name = None
-
+    pygame.mixer.music.load("sounds/main_page_bgm.wav")
+    bgm_flag = False
+    pygame.mixer.music.play()
     while True:
+        # ranking_page_sound.play()
         while user_input_name is None:
             SURFACE.fill((255, 255, 255))
 
@@ -104,7 +107,8 @@ def main():
             FPSCLOCK.tick(30)
 
         user_input_name = text_input.get_text()
-        # print(user_input_name)
+
+        # play_bgm(bgm_list, page_flag)
 
         # input 받는 부분
         for event in pygame.event.get():
@@ -128,13 +132,14 @@ def main():
         # 시작 페이지
         if page_flag == K_0:
             on_game = False
-            pygame.mixer.music.stop()
+            # pygame.mixer.music.stop()
+
             front_page.render(SURFACE)
 
         # 튜토리얼 페이지
         elif page_flag == K_7:
             on_game = False
-            pygame.mixer.music.stop()
+            # pygame.mixer.music.stop()
             tutorial_page.render(SURFACE)
 
         # 게임 페이지
@@ -151,7 +156,7 @@ def main():
         # 랭킹 페이지
         elif page_flag == K_9:
             on_game = False
-            pygame.mixer.music.stop()
+            # pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
         # draw_lines_for_locate_debug()
@@ -162,6 +167,36 @@ def main():
     print("***** MAIN CALLED *****")
     main()
 
+def play_bgm(playing):
+    if not playing:
+        bgm.play()
+
+
+
+def play_main_bgm(main_bgm, now_playing):
+    if not now_playing:
+        main_bgm.play()
+
+def play_main_bgm(main_bgm, now_playing):
+    if not now_playing:
+        main_bgm.play()
+
+
+
+def play_main_page_sound(m, r, t):
+    m.play()
+    r.stop()
+    t.stop()
+
+def play_ranking_page_sound(m, r, t):
+    m.stop()
+    r.play()
+    t.stop()
+
+def play_tutorial_page_sound(m, r, t):
+    m.stop()
+    r.stop()
+    t.play()
 
 def click_button(mouse_pos, page_flag):
     x_pos = mouse_pos[0]

@@ -27,14 +27,12 @@ class Meeting_beer(Game):
 
         # 모니터
         self.monitor_black_image = pygame.transform.scale(pygame.image.load('images/monitor.png'), (384, 300))
-        # self.monitor_beer_bagel_image = pygame.image.load('images/monitor_beer_bagel.png')
 
         self.monitor_front_both = pygame.transform.scale(pygame.image.load('images/monitor_front_both.png'), (340, 215))
         self.monitor_front_one = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
-        # self.monitor_front_one2 = pygame.transform.scale(pygame.image.load('images/monitor_front_11.png'), (340, 215))
         self.monitor_side_both = pygame.transform.scale(pygame.image.load('images/monitor_side_both.png'), (340, 215))
 
-        self.random_picked_number = randint(0, 3)
+        self.random_picked_number = randint(0, 2)
         self.picked_map = self.load_random_map(self.random_picked_number)
 
         # drink한 시간

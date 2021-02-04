@@ -20,7 +20,6 @@ class Click_game(Game):
     def __init__(self):
         super(Click_game, self).__init__()
         # super().add_to_game_list(self)
-        self.surf = pygame.transform.scale(pygame.image.load('images/click_square.png'), (100, 100))
         self.rect = Rect(590, 310, 100, 100)
 
         self.mouse_down_flag = False
