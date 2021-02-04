@@ -66,7 +66,9 @@ BLACK = (0, 0, 0)
 allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 page_key_input = [K_0, K_7, K_8, K_9]
 
-text_input = Input_name.TextInput(initial_string="remove this line and type your name")
+text_input = Input_name.TextInput(initial_string="remove this line", font_size=30)
+one_password_image = pygame.image.load('images/one_password.png')
+type_your_name_image = pygame.image.load('images/type_your_name.png')
 
 
 def main():
@@ -89,9 +91,12 @@ def main():
     pygame.mixer.music.play()
 
     while True:
+
         # ranking_page_sound.play()
         while user_input_name is None:
-            SURFACE.fill((255, 255, 255))
+            SURFACE.blit(one_password_image, (0, 0))
+            SURFACE.blit(type_your_name_image, (150, 100))
+            draw_lines_for_locate_debug()
 
             events = pygame.event.get()
             for event in events:
@@ -101,7 +106,7 @@ def main():
                     user_input_name = text_input.get_text()
                     break
             text_input.update(events)
-            SURFACE.blit(text_input.get_surface(), (10, 10))
+            SURFACE.blit(text_input.get_surface(), (500, 450))
 
             pygame.display.update()
             FPSCLOCK.tick(30)
@@ -159,7 +164,6 @@ def main():
             # pygame.mixer.music.stop()
             ranking_page.render(SURFACE)
 
-        # draw_lines_for_locate_debug()
         # 윈도우에 화면 출력
         pygame.display.flip()
         FPSCLOCK.tick(30)

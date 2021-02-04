@@ -42,6 +42,7 @@ class Game(pygame.sprite.Sprite):
         Game.music_start_time = time.time()
         self.next_bpm = Game.music_start_time + ONE_BPM
         self.stamp_sound = pygame.mixer.Sound('sounds/stamp_sound.wav')
+        self.finishing_sound = pygame.mixer.Sound('sounds/game_finished_sound.wav')
 
 
 
