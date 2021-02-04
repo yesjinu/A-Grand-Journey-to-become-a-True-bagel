@@ -37,6 +37,9 @@ from pygame.locals import (
     K_8, # start
     K_9, # ranking
 
+    K_LEFT,
+    K_RIGHT,
+
     K_SPACE,
     K_RETURN,
     MOUSEBUTTONUP,
@@ -66,9 +69,10 @@ BLACK = (0, 0, 0)
 allowed_key_input = [K_SPACE, K_p, K_a, K_d, K_s, K_w, K_q, K_e, K_r, K_f, MOUSEBUTTONUP, MOUSEBUTTONDOWN]
 page_key_input = [K_0, K_7, K_8, K_9]
 
-text_input = Input_name.TextInput(initial_string="remove this line", font_size=30)
+text_input = Input_name.TextInput(initial_string="type here", font_size=30)
 one_password_image = pygame.image.load('images/one_password.png')
 type_your_name_image = pygame.image.load('images/type_your_name.png')
+click_sound = pygame.mixer.Sound('sounds/slide_sound.wav')
 
 
 def main():
@@ -88,7 +92,7 @@ def main():
 
     user_input_name = None
     pygame.mixer.music.load("sounds/main_page_bgm.wav")
-    pygame.mixer.music.play()
+    pygame.mixer.music.play(-1)
 
     while True:
 
@@ -96,7 +100,6 @@ def main():
         while user_input_name is None:
             SURFACE.blit(one_password_image, (0, 0))
             SURFACE.blit(type_your_name_image, (150, 100))
-            draw_lines_for_locate_debug()
 
             events = pygame.event.get()
             for event in events:
@@ -121,10 +124,18 @@ def main():
                 pygame.quit()
                 sys.exit()
             elif event.type == KEYDOWN:
+                click_sound.play()
                 if on_game and (event.key in allowed_key_input):
                     game_manager.detect_key_all(event.key)
                 if event.key in page_key_input:
                     page_flag = event.key
+                if page_flag == K_7:
+                    if event.key == K_LEFT:
+                        tutorial_page.move_left()
+                    elif event.key == K_RIGHT:
+                        tutorial_page.move_right()
+                    else:
+                        pass
             elif event.type == KEYUP:
                 if event.key in allowed_key_input:
                     game_manager.update_all(event.key)
@@ -165,15 +176,12 @@ def main():
             ranking_page.render(SURFACE)
 
         # 윈도우에 화면 출력
+        # draw_lines_for_locate_debug()
         pygame.display.flip()
         FPSCLOCK.tick(30)
 
     print("***** MAIN CALLED *****")
     main()
-
-def play_bgm(playing):
-    if not playing:
-        bgm.play()
 
 
 

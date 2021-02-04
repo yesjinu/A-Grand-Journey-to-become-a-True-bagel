@@ -36,6 +36,7 @@ class Game(pygame.sprite.Sprite):
         self.game_list = []
         self.game_over_image = pygame.image.load('images/game_over.png')
         self.game_end_popup_image = pygame.image.load('images/game_end_popup.png')
+        self.your_score_is = pygame.image.load('images/your_score_is.png')
         self.back_icon_image = pygame.transform.scale(pygame.image.load('images/icon_back.png'), (60, 60))
 
 
@@ -101,7 +102,10 @@ class Game(pygame.sprite.Sprite):
             SURFACE.blit(self.back_icon_image, (20, 740))
 
         if Game.is_finished:
+            self.final_score = pygame.font.SysFont(None, 120).render(f'{self.get_score()}', False, (255, 255, 255))
             SURFACE.blit(self.game_end_popup_image, (65, 0))
+            SURFACE.blit(self.your_score_is, (280, 300))
+            SURFACE.blit(self.final_score, (600, 420))
             # Type your name:
             # Your score is 000
             # Press '0'to restart

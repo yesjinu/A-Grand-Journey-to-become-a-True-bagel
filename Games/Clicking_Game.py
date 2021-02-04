@@ -28,6 +28,7 @@ class Click_game(Game):
 
 
 
+
     # Move the sprite based on user key presses
     def click_down_flagger(self):
 

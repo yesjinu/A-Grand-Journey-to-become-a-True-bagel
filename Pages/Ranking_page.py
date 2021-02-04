@@ -13,7 +13,7 @@ class Ranking_page():
 
         self.ranking_background_image = pygame.image.load('images/ranking_page_bg.png')
         self.ranking_nameboard_image = pygame.image.load('images/ranking_page_name_board.png')
-        self.test_image = pygame.image.load('images/font_size_test.png') # TODO: Hall of Fame으로 교체할 것
+        self.hall_of_fame_image = pygame.image.load('images/hall_of_fame.png') # TODO: Hall of Fame으로 교체할 것
         self.back_icon_image = pygame.transform.scale(pygame.image.load('images/icon_back.png'), (100, 100))
 
 
@@ -38,7 +38,7 @@ class Ranking_page():
         # SURFACE.fill(GRAY)
         SURFACE.blit(self.ranking_background_image, (0, 0))
 
-        SURFACE.blit(self.test_image, (200, 30)) # hall of fame 이미지로 교체할 것
+        SURFACE.blit(self.hall_of_fame_image, (200, 30)) # hall of fame 이미지로 교체할 것
         SURFACE.blit(self.ranking_nameboard_image, (155, 180))
 
         SURFACE.blit(self.ranker_1, (350, 330))
