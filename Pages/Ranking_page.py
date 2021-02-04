@@ -16,8 +16,14 @@ class Ranking_page():
         self.hall_of_fame_image = pygame.image.load('images/hall_of_fame.png') # TODO: Hall of Fame으로 교체할 것
         self.back_icon_image = pygame.transform.scale(pygame.image.load('images/icon_back.png'), (100, 100))
 
-
         self.caution_message = FONT_60.render('ranking page', False, (50, 50, 50))
+
+        rankers_num = len(self.rankers_list)
+        for i in range(5 - rankers_num):
+            temp = ('None', 0)
+            self.rankers_list.append(temp)
+
+
         self.ranker_1 = FONT_60.render(f'{self.rankers_list[0][0]}', False, (50, 50, 50))
         self.ranker_2 = FONT_60.render(f'{self.rankers_list[1][0]}', False, (50, 50, 50))
         self.ranker_3 = FONT_60.render(f'{self.rankers_list[2][0]}', False, (50, 50, 50))
