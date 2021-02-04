@@ -124,7 +124,6 @@ def main():
                 pygame.quit()
                 sys.exit()
             elif event.type == KEYDOWN:
-                click_sound.play()
                 if on_game and (event.key in allowed_key_input):
                     game_manager.detect_key_all(event.key)
                 if event.key in page_key_input:
