@@ -3,9 +3,80 @@
   <component name="ChangeListManager">
     <list default="true" id="2aedf8d4-2c03-44c7-bb02-6b6573e01dfd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Games/Game.py" beforeDir="false" afterPath="$PROJECT_DIR$/Games/Game.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Rank_server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Rank_server.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/Analysis-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/EXE-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.pkg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/PKG-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PKG-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.pyz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/PYZ-00.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/main/warn-main.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/main/warn-main.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/A grand journey.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/01_SAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/02_SAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/bagelcode_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/calendar_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/click_correct.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/click_not_correct.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/click_redball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/click_square.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/left_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/main_title.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/monitor_front.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/monitor_front_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/monitor_logo_bagelcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/monitor_side.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/slack_bad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/slack_good.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_border.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_chair.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_people_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_person.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_run_bagel_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_run_bagel_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/table_table.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/images/그림1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.app/Contents/MacOS/main" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.app/Contents/MacOS/main" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/Drinking 01 by Handfan Id-71233.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/ranking_bgm_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/ranking_bmg_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/ranking_bmg_3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/trimmed_music.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/sounds/tutorial_bgm_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/01_SAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/02_SAMPLE.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/bagelcode_logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/calendar_3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/click_correct.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/click_not_correct.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/click_redball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/click_square.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/left_arrow.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/main_title.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/monitor_front.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/monitor_front_12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/monitor_logo_bagelcode.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/monitor_side.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slack_bad.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/slack_good.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_border.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_chair.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_people_5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_person.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_run_bagel_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_run_bagel_2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/table_table.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/그림1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/Drinking 01 by Handfan Id-71233.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/calendar in.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/mouse_click.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/ranking_bgm.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/ranking_bgm_1.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/ranking_bmg_2.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/ranking_bmg_3.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/trimmed_music.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/sounds/tutorial_bgm_1.wav" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -203,6 +274,6 @@
     <SUITE FILE_PATH="coverage/jinu$Manager.coverage" NAME="Manager Coverage Results" MODIFIED="1612245525685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
     <SUITE FILE_PATH="coverage/jinu$Click_rhythm.coverage" NAME="Click_rhythm Coverage Results" MODIFIED="1612228332666" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
     <SUITE FILE_PATH="coverage/jinu$Table_sitting.coverage" NAME="Table_sitting Coverage Results" MODIFIED="1612251007840" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Games" />
-    <SUITE FILE_PATH="coverage/jinu$main.coverage" NAME="main Coverage Results" MODIFIED="1612386420743" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/jinu$main.coverage" NAME="main Coverage Results" MODIFIED="1612408517289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

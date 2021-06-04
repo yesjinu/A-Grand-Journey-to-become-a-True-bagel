@@ -1,1 +1,6 @@
 venv/
+build/
+dist/
+get-pip.py
+main.spec
+yourfile.spec
