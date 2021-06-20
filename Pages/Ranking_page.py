@@ -9,7 +9,8 @@ class Ranking_page():
     def __init__(self):
         FONT_60 = pygame.font.SysFont(None, 60)
 
-        self.rankers_list = Rank_server.get_rank()
+        # self.rankers_list = Rank_server.get_rank()
+        self.rankers_list = []
 
         self.ranking_background_image = pygame.image.load('images/ranking_page_bg.png')
         self.ranking_nameboard_image = pygame.image.load('images/ranking_page_name_board.png')

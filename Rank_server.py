@@ -1,7 +1,7 @@
 import requests
 import json
-URL_update_rank = 'http://54.180.140.113:10001/jinu/update_rank'
-URL_get_rank = 'http://54.180.140.113:10001/jinu/get_rank'
+URL_update_rank = 'http://some_url/jinu/update_rank'
+URL_get_rank = 'http://some_url/jinu/get_rank'
 
 def get_rank():
     response = requests.post(URL_get_rank).json()['data']

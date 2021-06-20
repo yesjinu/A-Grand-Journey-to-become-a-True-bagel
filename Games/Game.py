@@ -57,7 +57,7 @@ class Game(pygame.sprite.Sprite):
         # self.game_play_music.play()
         # pygame.mixer.music.load('sounds/bad_guy.mp3') # TODO: 게임 전환 싱크 더 잘 맞추기
         # pygame.mixer.music.load('sounds/trimmed_music.mp3')
-        pygame.mixer.music.load('sounds/bad_guy_sample.mp3')
+        # pygame.mixer.music.load('sounds/bad_guy_sample.mp3')
         pygame.mixer.music.play()
         # bad_guy = pygame.mixer.Sound('sounds/bad_guy_sample.mp3')
         # bad_guy.play()
