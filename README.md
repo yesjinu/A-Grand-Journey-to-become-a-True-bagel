@@ -15,10 +15,13 @@
 
 이 모든 미션을 처리하며, 리듬을 놓치지 말 것!
 
-자세한 방법은 [HOW TO PLAY](https://github.com/yesjinu/A-Grand-Journey-to-become-a-True-bagel/blob/master/HOW%20TO%20PLAY.pdf)를 참고.
+자세한 방법은 [HOW TO PLAY](https://github.com/yesjinu/A-Grand-Journey-to-become-a-True-bagel/blob/master/HOW%20TO%20PLAY.pdf)를 참고하도록!
+
+
 
 # Information
 - 저작권 문제로 배경 음악을 제거함. 원 음악은 [Billie Eilish - Bad guys](https://youtu.be/DyDfgMOUjCI)
+- 같은 이유로 게임 빌드 파일을 제공하지 못함. 실행 방법은 pygame 설치 후 `main.py` run.
 - 랭킹 서버가 닫혀, 랭킹 집계는 불가한 상태 ;(
 - 게임잼에 제출했던 코드 상태를 (디버깅용 출력까지) 최대한 그대로 유지
 
