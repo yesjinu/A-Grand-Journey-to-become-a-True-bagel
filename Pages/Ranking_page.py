@@ -9,6 +9,7 @@ class Ranking_page():
     def __init__(self):
         FONT_60 = pygame.font.SysFont(None, 60)
 
+        # 현재 Rank_server가 닫혀있어 에러 발생. 아쉽지만 주석처리로 에러 핸들링.
         # self.rankers_list = Rank_server.get_rank()
         self.rankers_list = []
 
